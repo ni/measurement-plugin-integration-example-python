@@ -1,2 +1,5 @@
-# Default code owner for \<reponame\>
-benmont #replace for \<reponame\>
+# Default code owner for the repository
+* @Prem-MysteryPro @jayaseelan-james
+
+# Add santhoshramaraj for documentation
+*.md @santhoshramaraj @Prem-MysteryPro @jayaseelan-james
