@@ -80,17 +80,28 @@ Note: Before creating clients, the tool automatically handles directory cleanup 
 - For generating client, use
 
     ```python
-    ni_measurementlink_client.template.create_client.main(args=args)
+    ni_measurement_plugin_sdk_generator.client.create_client.main(args=args)
     ```
 
-    Here, `args` is  `[f"{client_name}", f"-m{measurement.service_class}"]` which `create_client` method expects.
+    Here, `args` is  
+
+    ```python
+    args = [
+            f"-s{measurement.service_class}",
+            f"-o{client_module_directory}",
+            f"-c{class_name}",
+            f"-m{module_name}",
+        ]
+    ```
+
+    which `create_client` method expects.
     Accordingly, modify your arguments with respect to the options or the parameters that the method expects.
 - Ensure that the args match with the required parameters for `create_client` method.
 - For better error handling, wrap method calls inside try-except blocks to catch and log exceptions:
 
     ```python
     try:
-        ni_measurementlink_client.template.create_client.main(args)
+        ni_measurement_plugin_sdk_generator.client.create_client.main(args=args)
     except Exception as e:
         print(f"Error occurred: {e}")
     ```
@@ -98,12 +109,12 @@ Note: Before creating clients, the tool automatically handles directory cleanup 
 ## Dependencies
 
 - **For Reference sequencer**
-  - ni_measurementlink_service-1.5.0.dev4-py3-none-any.whl
-  - ni_measurementlink_client-0.1.0.dev0-py3-none-any.whl
+  - ni-measurement-plugin-sdk-service
+  - ni-measurement-plugin-sdk-generator
   - sequence_logger-0.1.0-py3-none-any.whl
 - **For sequence execution**
   - sequence_logger-0.1.0-py3-none-any.whl
-  - ni_measurementlink_service-1.5.0.dev4-py3-none-any.whl
+  - ni-measurement-plugin-sdk-service
 
 These wheel packages has been provided in `python-sequencer\dependencies\` directory.
 

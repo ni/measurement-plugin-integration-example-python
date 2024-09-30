@@ -1,6 +1,7 @@
 import click
 from client_handler import create_client
 
+
 @click.command()
 @click.option(
     "-r", "--refresh-clients", is_flag=True, help="Flag to create a measurementlink client"
