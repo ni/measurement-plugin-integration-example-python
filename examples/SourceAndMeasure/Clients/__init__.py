@@ -1,0 +1,7 @@
+from .NIDCPowerSourceDCVoltage_Python_client import NIDCPowerSourceDCVoltage_Python
+from .NIDmmMeasurement_Python_client import NIDmmMeasurement_Python
+from .SampleMeasurement_Python_client import SampleMeasurement_Python
+
+nidcpowersourcedcvoltage_python = NIDCPowerSourceDCVoltage_Python()
+nidmmmeasurement_python = NIDmmMeasurement_Python()
+samplemeasurement_python = SampleMeasurement_Python()

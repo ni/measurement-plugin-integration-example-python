@@ -159,7 +159,6 @@ def clean_up(user_directory: pathlib.Path) -> None:
     Returns:
         None
     """
-    user_directory = pathlib.Path(user_directory)
     client_directory = user_directory / "Clients"
     # Delete all files in the Clients directory
     for filename in client_directory.iterdir():
@@ -190,7 +189,7 @@ def configure_init_file(
     init_content: List[str] = []
 
     for module_name, class_name in zip(list_of_module_names, list_of_class_names):
-        init_content.append(f"from {module_name} import {class_name}")
+        init_content.append(f"from .{module_name} import {class_name}")
     init_content.append("")
 
     for class_name in list_of_class_names:
@@ -245,7 +244,7 @@ def create_client(target_path: Optional[pathlib.Path] = None) -> None:
     if not target_path:
         user_directory = pathlib.Path.cwd()
     else:
-        user_directory: pathlib.Path = target_path
+        user_directory = pathlib.Path(target_path)
     client_module_directory = user_directory / "Clients"
 
     if not client_module_directory.exists():
