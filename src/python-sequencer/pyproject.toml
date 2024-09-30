@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "python-sequencer"
+version = "0.1.0"
+package-mode = false
+description = "Capable of measurement client generation and sequence the generated measurement clients as a Python script."
+authors = ["divakar-selvam"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+sequence-logger = {path = "dependencies/sequence_logger-0.1.0-py3-none-any.whl"}
+
+[tool.poetry.group.dev.dependencies]
+click = "^8.1.7"
+ni-measurementlink-service = {path = "dependencies/ni_measurementlink_service-1.5.0.dev4-py3-none-any.whl"}
+ni-measurementlink-client = {path = "dependencies/ni_measurementlink_client-0.1.0.dev0-py3-none-any.whl"}
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
