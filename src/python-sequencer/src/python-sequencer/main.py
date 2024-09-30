@@ -1,3 +1,4 @@
+import pathlib
 import click
 from client_handler import create_client
 
@@ -12,7 +13,7 @@ from client_handler import create_client
     type=click.Path(exists=True, file_okay=False, dir_okay=True, writable=True, readable=True),
     help="Path to the directory where sequence files are stored",
 )
-def run_script(refresh_clients: bool, sequence_directory: str) -> None:
+def run_script(refresh_clients: bool, sequence_directory: pathlib.Path) -> None:
     """
     Python Custom Sequencer is a Command line tool which uses `Client generator` by integration and utilizes the clients to sequence measurements.
     """
