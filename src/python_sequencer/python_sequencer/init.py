@@ -1,6 +1,6 @@
 import pathlib
-import click
 
+import click
 from python_sequencer._client_handler import create_client
 
 
@@ -12,7 +12,7 @@ from python_sequencer._client_handler import create_client
 def run_script(directory_out: pathlib.Path) -> None:
     """
     Python Custom Sequencer is a Command line tool which uses `Client generator` by integration and utilizes the clients to sequence measurements.
-    
+
     The `directory_out` argument is a mandatory path to the directory where sequence files are stored.
     """
     try:

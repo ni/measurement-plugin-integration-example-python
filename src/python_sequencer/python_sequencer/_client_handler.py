@@ -20,9 +20,7 @@ _CAMEL_TO_SNAKE_CASE_REGEXES = [
 
 
 def _get_function_parameters(node: ast.FunctionDef) -> Dict[str, str]:
-    """
-    Extract the parameters of a function from its AST node.
-    """
+    """Extracts function parameters and their default values from an AST node."""
     func_params: Dict[str, str] = {}
 
     # Iterate through the function's arguments, adding them to the func_params dictionary.
@@ -41,9 +39,7 @@ def _get_function_parameters(node: ast.FunctionDef) -> Dict[str, str]:
 
 
 def _get_default_value_as_str(default: ast.AST) -> str:
-    """
-    Parse the default value of a function parameter from its AST node.
-    """
+    """Parses the default value of a function parameter from its AST node."""
     if isinstance(default, ast.Constant):
         return str(default.value)
     if isinstance(default, ast.List):
@@ -60,6 +56,7 @@ def _get_default_value_as_str(default: ast.AST) -> str:
 
 
 def _remove_suffix(string: str) -> str:
+    """Removes known suffixes from a string."""
     suffixes = ["_Python", "_LabVIEW"]
     for suffix in suffixes:
         if string.endswith(suffix):
@@ -67,7 +64,7 @@ def _remove_suffix(string: str) -> str:
     return string
 
 
-def extract_base_service_class(service_class: str) -> str:
+def _extract_base_service_class(service_class: str) -> str:
     """Creates a base service class from the measurement service class."""
     base_service_class = service_class.split(".")[-1]
     base_service_class = _remove_suffix(base_service_class)
@@ -84,6 +81,7 @@ def extract_base_service_class(service_class: str) -> str:
 
 
 def _camel_to_snake_case(camel_case_string: str) -> str:
+    """Converts a camel case string to snake case."""
     partial = camel_case_string
     for regex in _CAMEL_TO_SNAKE_CASE_REGEXES:
         partial = regex.sub(r"\1_\2", partial)
@@ -91,27 +89,23 @@ def _camel_to_snake_case(camel_case_string: str) -> str:
     return partial.lower()
 
 
-def create_module_name(base_service_class: str) -> str:
-    """Creates a module name using base service class."""
+def _create_module_name(base_service_class: str) -> str:
+    """Creates a module name using a base service class."""
     return _camel_to_snake_case(base_service_class) + "_client"
 
 
-def create_class_name(base_service_class: str) -> str:
-    """Creates a class name using base service class."""
+def _create_class_name(base_service_class: str) -> str:
+    """Creates a class name using a base service class."""
     return base_service_class.replace("_", "") + "Client"
 
 
 def _clear_file(file_path: pathlib.Path) -> None:
-    """
-    Helper function to clear the content of a file.
-    """
+    """Clears the content of a file."""
     open(file_path, "w").close()
 
 
 def _delete_file(file_path: pathlib.Path) -> None:
-    """
-    Helper function to delete a file.
-    """
+    """Deletes a file if it exists."""
     file_path = pathlib.Path(file_path)
     if file_path.is_file():
         file_path.unlink(missing_ok=True)
@@ -120,17 +114,7 @@ def _delete_file(file_path: pathlib.Path) -> None:
 def _create_new_sequence_file(
     file_path: pathlib.Path, instance_names: List[str], callables: List[str]
 ) -> None:
-    """
-    Write a new Python file that initializes logging and registers pinmap methods.
-
-    Args:
-        file_path (pathlib.Path): The path where the new file will be created.
-        client_name (str): The name of the client to be used in the file.
-        callables (List[str]): A list of callable method names to be included in the pin_map_methods.
-
-    Returns:
-        None
-    """
+    """Writes a new Python file that initializes logging and registers pinmap methods."""
     template_file_path = str(
         pathlib.Path(__file__).parent / "templates" / "custom_sequencer.py.mako"
     )
@@ -149,16 +133,22 @@ def _create_new_sequence_file(
 def analyze_functions_and_parameters(
     file_path: pathlib.Path,
 ) -> Tuple[List[str], Dict[str, Dict[str, str]]]:
-    """
-    Analyze a Python file to extract method names and their parameters.
+    """Analyze a Python file to extract method names and their parameters.
+
+    This method parses a Python file and retrieves all function definitions along
+    with their parameters and default values.
 
     Args:
-        file_path (pathlib.Path): The path to the Python file to analyze.
+        file_path: The path to the Python file to analyze.
 
     Returns:
-        Tuple[List[str], Dict[str, Dict[str, str]]]: A tuple containing:
-            - A list of method names.
-            - A dictionary where keys are method names and values are dictionaries of parameter names and their default values.
+        A tuple containing:
+        - A list of method names.
+        - A dictionary mapping method names to their parameters and default values.
+
+    Raises:
+        FileNotFoundError: If the file cannot be found.
+        SyntaxError: If there is an issue parsing the Python file.
     """
     with open(file_path, "r") as file:
         tree = ast.parse(file.read())
@@ -180,23 +170,23 @@ def analyze_functions_and_parameters(
 
 
 def clean_up(user_directory: pathlib.Path) -> None:
-    """
-    Deletes all files in the Clients directory and removes the custom_sequencer.py file.
+    """Delete files in the Clients directory and remove the custom_sequencer.py file.
+
+    This method cleans up files in the given directory by removing all files within
+    the Clients subdirectory and deleting the custom_sequencer.py file if it exists.
 
     Args:
-        user_directory (pathlib.Path): The path to the user directory where the Clients
-                                        directory and custom_sequencer.py file are located.
+        user_directory: The path to the user directory containing the Clients directory
+                        and custom_sequencer.py file.
 
-    Returns:
-        None
+    Raises:
+        FileNotFoundError: If the directory or files do not exist.
     """
     client_directory = user_directory / "Clients"
-    # Delete all files in the Clients directory
     for filename in client_directory.iterdir():
         file_path = client_directory / filename
         _delete_file(file_path)
 
-    # Delete custom_sequencer.py
     sequencer_path = user_directory / "custom_sequencer.py"
     _delete_file(sequencer_path)
 
@@ -206,16 +196,18 @@ def configure_init_file(
     list_of_class_names: List[str],
     list_of_module_names: List[str],
 ) -> None:
-    """
-    Configure the __init__.py file in the given module directory.
+    """Configure the __init__.py file for the client module.
+
+    This method creates or updates the __init__.py file in the client module
+    directory by importing the necessary class names from their respective modules.
 
     Args:
-        client_module_directory (pathlib.Path): The directory for the client module.
-        list_of_class_names (List[str]): List of class names to be imported.
-        list_of_module_names (List[str]): List of module names corresponding to the class names.
+        client_module_directory: The directory where the client module is located.
+        list_of_class_names: List of class names to be imported in the __init__.py file.
+        list_of_module_names: List of module names corresponding to the class names.
 
-    Returns:
-        None
+    Raises:
+        FileNotFoundError: If the client module directory does not exist.
     """
     init_content: List[str] = []
 
@@ -240,20 +232,24 @@ def write_sequence_file(
     user_directory: pathlib.Path,
     list_of_class_names: List[str],
 ) -> None:
-    """
-    Write a sequence file based on the provided client directories and class names.
+    """Write a sequence file based on client directories and class names.
+
+    This method writes a new Python file called custom_sequencer.py based on the
+    provided client directories and class names.
 
     Args:
-        list_of_client_directories (List[pathlib.Path]): List of client directory paths.
-        user_directory (pathlib.Path): The user directory where the sequence file will be written.
-        list_of_class_names (List[str]): List of class names to be included.
+        list_of_client_directories: A list of paths to client directories containing the
+                                    necessary modules.
+        user_directory: The path to the user directory where the custom_sequencer.py
+                        file will be written.
+        list_of_class_names: List of class names to be included in the sequence file.
 
-    Returns:
-        None
+    Raises:
+        FileNotFoundError: If the provided directory paths do not exist.
     """
     methods, _ = analyze_functions_and_parameters(
         list_of_client_directories[0]
-    )  # passing the first client as all clients has the same methods
+    )  # assuming all clients have the same methods
     pinmap_methods: List[str] = [f"{func}" for func in methods if "pin" in func.lower()]
     _create_new_sequence_file(
         file_path=user_directory / "custom_sequencer.py",
@@ -263,14 +259,18 @@ def write_sequence_file(
 
 
 def create_client(target_path: Optional[pathlib.Path] = None) -> None:
-    """
-    Create a client by generating necessary files and configurations.
+    """Create a client and generate the required configuration files.
+
+    This method creates a client by generating necessary files, configuring
+    the client directory, and cleaning up any pre-existing files.
 
     Args:
-        target_path (Optional[pathlib.Path]): The target directory for client creation. Defaults to current working directory.
+        target_path: The target directory for the client creation. If not specified,
+                     the current working directory will be used.
 
-    Returns:
-        None
+    Raises:
+        FileNotFoundError: If the target directory does not exist.
+        Exception: If client generation fails for any reason.
     """
     user_directory = pathlib.Path(target_path)
     client_module_directory = user_directory / "Clients"
@@ -290,9 +290,9 @@ def create_client(target_path: Optional[pathlib.Path] = None) -> None:
     clean_up(user_directory=user_directory)
 
     for measurement in available_measurement_services:
-        base_service_class = extract_base_service_class(measurement.service_class)
-        class_name = create_class_name(base_service_class)
-        module_name = create_module_name(base_service_class)
+        base_service_class = _extract_base_service_class(measurement.service_class)
+        class_name = _create_class_name(base_service_class)
+        module_name = _create_module_name(base_service_class)
         args = [
             f"-s{measurement.service_class}",
             f"-o{client_module_directory}",
