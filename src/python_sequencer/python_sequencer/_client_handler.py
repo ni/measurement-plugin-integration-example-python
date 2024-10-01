@@ -3,6 +3,7 @@ import pathlib
 import re
 from typing import Dict, List, Optional, Tuple
 
+import click
 import ni_measurement_plugin_sdk_generator.client
 import ni_measurement_plugin_sdk_generator.client.templates
 from mako.template import Template
@@ -58,6 +59,30 @@ def _get_default_value_as_str(default: ast.AST) -> str:
     return ""
 
 
+def _remove_suffix(string: str) -> str:
+    suffixes = ["_Python", "_LabVIEW"]
+    for suffix in suffixes:
+        if string.endswith(suffix):
+            return string.removesuffix(suffix)
+    return string
+
+
+def extract_base_service_class(service_class: str) -> str:
+    """Creates a base service class from the measurement service class."""
+    base_service_class = service_class.split(".")[-1]
+    base_service_class = _remove_suffix(base_service_class)
+
+    if not base_service_class.isidentifier():
+        raise click.ClickException(
+            f"Client creation failed for '{service_class}'.\nEither provide a module name or update the measurement with a valid service class."
+        )
+    if not any(ch.isupper() for ch in base_service_class):
+        print(
+            f"Warning: The service class '{service_class}' does not adhere to the recommended format."
+        )
+    return base_service_class
+
+
 def _camel_to_snake_case(camel_case_string: str) -> str:
     partial = camel_case_string
     for regex in _CAMEL_TO_SNAKE_CASE_REGEXES:
@@ -74,14 +99,6 @@ def create_module_name(base_service_class: str) -> str:
 def create_class_name(base_service_class: str) -> str:
     """Creates a class name using base service class."""
     return base_service_class.replace("_", "") + "Client"
-
-
-def _get_last_segment_from_string(input_string: str, delimiter: str = ".") -> str:
-    """
-    Extracts the last segment of a string that is divided by a specified delimiter.
-    """
-    segments = input_string.split(delimiter)
-    return segments[-1]
 
 
 def _clear_file(file_path: pathlib.Path) -> None:
@@ -255,10 +272,7 @@ def create_client(target_path: Optional[pathlib.Path] = None) -> None:
     Returns:
         None
     """
-    if not target_path:
-        user_directory = pathlib.Path.cwd()
-    else:
-        user_directory = pathlib.Path(target_path)
+    user_directory = pathlib.Path(target_path)
     client_module_directory = user_directory / "Clients"
 
     if not client_module_directory.exists():
@@ -276,10 +290,9 @@ def create_client(target_path: Optional[pathlib.Path] = None) -> None:
     clean_up(user_directory=user_directory)
 
     for measurement in available_measurement_services:
-        # class_name = _get_last_segment_from_string(measurement.service_class)
-        # module_name = _get_last_segment_from_string(measurement.service_class + "_client")
-        class_name = _get_last_segment_from_string(create_class_name(measurement.service_class))
-        module_name = _get_last_segment_from_string(create_module_name(measurement.service_class))
+        base_service_class = extract_base_service_class(measurement.service_class)
+        class_name = create_class_name(base_service_class)
+        module_name = create_module_name(base_service_class)
         args = [
             f"-s{measurement.service_class}",
             f"-o{client_module_directory}",

@@ -2,7 +2,7 @@
 name = "sequence-logger"
 version = "0.1.0"
 description = "A simple logger package"
-authors = ["divakar selvam"]
+authors = ["National Instruments"]
 license = "MIT"
 readme = "README.md"
 classifiers = [

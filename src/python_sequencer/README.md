@@ -12,18 +12,17 @@ Ensure Poetry is installed on your system to manage the Python environment and d
 
 ### Step 2: Run the Script
 
-You can run the provided script `main.py` using the command line. The script allows you to either refresh clients or specify a directory where sequence files are stored.
+You can run the provided script `main.py` using the command line. The script now requires a mandatory argument to specify the directory where the generated clients and sequence files will be stored.
 
 ```cli
-python main.py --refresh-clients --sequence-directory /path/to/sequence/directory
+python main.py /path/to/sequence/directory
 ```
 
-- **--refresh-clients**: Flag to refresh or create a MeasurementLink client.
-- **--sequence-directory (optional)**: Specify the directory where sequence files should be stored. Ensure the directory exists and has write permissions. (If nothing is specified then the current working directory will be assigned.)
+- **/path/to/sequence/directory** (mandatory): The path to the directory where the generated clients and sequence files will be stored. Ensure that the directory exists and has write permissions.
 
 ### Step 3: Creating Clients
 
-When the `--refresh-clients` flag is set, the script will:
+When you run the script with the specified directory, it will:
 
 1. Enumerate available Measurement services.
 2. Create a client for each available service.
@@ -41,9 +40,15 @@ Users can modify this file to define their own sequences for the generated clien
 
 ### Step 5: Logging Setup
 
-- To ensure logging functionality across all modules, a custom logging package (`logger.py`) has been provided as a pre-built wheel package.
+- To ensure logging functionality across all modules, a custom logging package (`sequence_logger.py`) has been provided as a pre-built wheel package.
 
-- Make sure to install this logging package in your sequence directory by using `pip install`. This enables the `custom_sequencer.py` file to import and utilize the logging capabilities correctly.
+- Make sure to install this logging package in your sequence directory by using
+
+ ```cli
+ pip install /path/to/sequence_logger-x.x.x-py3-none-any.whl
+ ```
+
+- This enables the `custom_sequencer.py` file to import and utilize the logging capabilities correctly.
 
 - Once installed, the logging package will initialize the logging configuration for the script, helping capture logs from various operations throughout the sequence.
 
@@ -111,7 +116,6 @@ Note: Before creating clients, the tool automatically handles directory cleanup 
 - **For Reference sequencer**
   - ni-measurement-plugin-sdk-service
   - ni-measurement-plugin-sdk-generator
-  - sequence_logger-0.1.0-py3-none-any.whl
 - **For sequence execution**
   - sequence_logger-0.1.0-py3-none-any.whl
   - ni-measurement-plugin-sdk-service
@@ -120,8 +124,5 @@ These wheel packages has been provided in `python-sequencer\dependencies\` direc
 
 ### Example Usage
 
-- `python main.py --refresh-clients -s \my\sequence\directory`
-    This command refreshes the clients and generates a new sequence file in the \`\my\sequence\directory\`.
-
-- `python main.py --refresh-clients`
-    This command refreshes the clients and generates a new sequence file in the current working directory.
+- `python main.py /my/sequence/directory`
+    This command generates new clients and a sequence file in the `/my/sequence/directory` directory.

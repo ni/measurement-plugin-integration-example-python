@@ -5,24 +5,17 @@ from python_sequencer._client_handler import create_client
 
 
 @click.command()
-@click.option(
-    "-r", "--refresh-clients", is_flag=True, help="Flag to create Measurement Plug-In clients"
-)
-@click.option(
-    "-o",
-    "--directory-out",
+@click.argument(
+    "directory_out",
     type=click.Path(exists=True, file_okay=False, dir_okay=True, writable=True, readable=True),
-    help="Path to the directory where sequence files are stored",
 )
-def run_script(refresh_clients: bool, directory_out: pathlib.Path) -> None:
+def run_script(directory_out: pathlib.Path) -> None:
     """
     Python Custom Sequencer is a Command line tool which uses `Client generator` by integration and utilizes the clients to sequence measurements.
+    
+    The `directory_out` argument is a mandatory path to the directory where sequence files are stored.
     """
-    if refresh_clients:
-        try:
-            create_client(directory_out)
-        except Exception as e:
-            raise click.ClickException(f"An unexpected error occurred: {e}")
-        return
-    else:
-        click.echo("No command specified. Use --help to look at options.")
+    try:
+        create_client(directory_out)
+    except Exception as e:
+        raise click.ClickException(f"An unexpected error occurred: {e}")
