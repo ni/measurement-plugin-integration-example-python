@@ -25,7 +25,3 @@ def run_script(refresh_clients: bool, sequence_directory: pathlib.Path) -> None:
         return
     else:
         click.echo("No command specified. Use --help to look at options.")
-
-
-if __name__ == "__main__":
-    run_script()
