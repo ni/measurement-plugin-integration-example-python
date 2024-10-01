@@ -1,12 +1,8 @@
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
-
 [tool.poetry]
 name = "sequence-logger"
 version = "0.1.0"
 description = "A simple logger package"
-authors = ["Your Name <your.email@example.com>"]
+authors = ["divakar selvam"]
 license = "MIT"
 readme = "README.md"
 classifiers = [
@@ -19,4 +15,8 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.7"
+python = ">=3.8"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

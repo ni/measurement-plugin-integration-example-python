@@ -6,7 +6,7 @@ import traceback
 import sys
 from datetime import datetime
 
-class Logger:
+class _Logger:
     """
     A logger class to manage logging of function calls, returns, and exceptions.
     """
@@ -88,7 +88,7 @@ class Logger:
                 self.logged_functions.remove(func_name)
             self.call_stack.pop()
 
-logger = Logger()
+logger = _Logger()
 
 def log_actions(func):
     """

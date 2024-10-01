@@ -1,11 +1,21 @@
 import ast
 import pathlib
+import re
 from typing import Dict, List, Optional, Tuple
 
 import ni_measurement_plugin_sdk_generator.client
+import ni_measurement_plugin_sdk_generator.client.templates
+from mako.template import Template
 from ni_measurement_plugin_sdk_service.discovery import DiscoveryClient
 
 _V2_MEASUREMENT_SERVICE_INTERFACE = "ni.measurementlink.measurement.v2.MeasurementService"
+# List of regex patterns to convert camel case to snake case
+_CAMEL_TO_SNAKE_CASE_REGEXES = [
+    re.compile("([^_\n])([A-Z][a-z]+)"),
+    re.compile("([a-z])([A-Z])"),
+    re.compile("([0-9])([^_0-9])"),
+    re.compile("([^_0-9])([0-9])"),
+]
 
 
 def _get_function_parameters(node: ast.FunctionDef) -> Dict[str, str]:
@@ -24,12 +34,12 @@ def _get_function_parameters(node: ast.FunctionDef) -> Dict[str, str]:
     for i, default in enumerate(node.args.defaults):
         # "-len(node.args.defaults) + i" gives us the correct index from the end of the list
         arg_name = node.args.args[-len(node.args.defaults) + i].arg
-        func_params[arg_name] = _get_default_value(default)
+        func_params[arg_name] = _get_default_value_as_str(default)
 
     return func_params
 
 
-def _get_default_value(default: ast.AST) -> str:
+def _get_default_value_as_str(default: ast.AST) -> str:
     """
     Parse the default value of a function parameter from its AST node.
     """
@@ -48,6 +58,24 @@ def _get_default_value(default: ast.AST) -> str:
     return ""
 
 
+def _camel_to_snake_case(camel_case_string: str) -> str:
+    partial = camel_case_string
+    for regex in _CAMEL_TO_SNAKE_CASE_REGEXES:
+        partial = regex.sub(r"\1_\2", partial)
+
+    return partial.lower()
+
+
+def create_module_name(base_service_class: str) -> str:
+    """Creates a module name using base service class."""
+    return _camel_to_snake_case(base_service_class) + "_client"
+
+
+def create_class_name(base_service_class: str) -> str:
+    """Creates a class name using base service class."""
+    return base_service_class.replace("_", "") + "Client"
+
+
 def _get_last_segment_from_string(input_string: str, delimiter: str = ".") -> str:
     """
     Extracts the last segment of a string that is divided by a specified delimiter.
@@ -60,8 +88,7 @@ def _clear_file(file_path: pathlib.Path) -> None:
     """
     Helper function to clear the content of a file.
     """
-    with open(file_path, "w") as file:
-        file.write("")
+    open(file_path, "w").close()
 
 
 def _delete_file(file_path: pathlib.Path) -> None:
@@ -70,7 +97,7 @@ def _delete_file(file_path: pathlib.Path) -> None:
     """
     file_path = pathlib.Path(file_path)
     if file_path.is_file():
-        file_path.unlink()
+        file_path.unlink(missing_ok=True)
 
 
 def _create_new_sequence_file(
@@ -87,32 +114,19 @@ def _create_new_sequence_file(
     Returns:
         None
     """
-    import_instances = ", ".join(instance_names)
-    sequence_file_content = []
-
-    sequence_file_content.append(f"from Clients import {import_instances}\n")
-    sequence_file_content.append("from sequence_logger import init_log\n\n")
-    sequence_file_content.append("init_log()\n\n")
-    sequence_file_content.append("pin_map_methods = [\n")
-
-    for instance_name in instance_names:
-        for func in callables:
-            sequence_file_content.append(f"    {instance_name}.{func},\n")
-
-    sequence_file_content.append("\n]\n")
-    sequence_file_content.append(
-        'pin_map_path = r"path\\to\\pinmap\\file"  # update your pinmap path here\n\n'
+    template_file_path = str(
+        pathlib.Path(__file__).parent / "templates" / "custom_sequencer.py.mako"
     )
-    sequence_file_content.append("# pinmap will be registered to all the instruments\n")
-    sequence_file_content.append("for register_pin_map in pin_map_methods:\n")
-    sequence_file_content.append("    register_pin_map(pin_map_path)\n\n")
-    sequence_file_content.append("# write your sequence here\n")
+    with open(template_file_path, "r") as template_file:
+        template_content = template_file.read()
 
-    # Write all content to the file at once
+    template = Template(template_content)
+    rendered_content = template.render(instance_names=instance_names, callables=callables)
+
     with open(file_path, "w") as file:
-        file.write("".join(sequence_file_content))
+        file.write(rendered_content)
 
-        print(f"File created and sequence list written to {file_path}")
+    print(f"File created and sequence list written to {file_path}")
 
 
 def analyze_functions_and_parameters(
@@ -262,8 +276,10 @@ def create_client(target_path: Optional[pathlib.Path] = None) -> None:
     clean_up(user_directory=user_directory)
 
     for measurement in available_measurement_services:
-        class_name = _get_last_segment_from_string(measurement.service_class)
-        module_name = _get_last_segment_from_string(measurement.service_class + "_client")
+        # class_name = _get_last_segment_from_string(measurement.service_class)
+        # module_name = _get_last_segment_from_string(measurement.service_class + "_client")
+        class_name = _get_last_segment_from_string(create_class_name(measurement.service_class))
+        module_name = _get_last_segment_from_string(create_module_name(measurement.service_class))
         args = [
             f"-s{measurement.service_class}",
             f"-o{client_module_directory}",
@@ -275,7 +291,7 @@ def create_client(target_path: Optional[pathlib.Path] = None) -> None:
         except SystemExit:
             pass
         except Exception as e:
-            print("Exception thrown from client generation: ", e)
+            raise Exception("Exception thrown from client generation: ", e)
 
         client_directory = client_module_directory / f"{module_name}.py"
         list_of_client_directories.append(client_directory)

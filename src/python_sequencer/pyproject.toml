@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "python-sequencer"
+version = "0.1.0-dev0"
+package-mode = true
+description = "Python sequence script generator by using Measurement Plug-In Client."
+authors = ["National Instruments"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+click = "^8.1.7"
+mypy = "^1.11.2"
+mako = "^1.3.5"
+sequence-logger = {path = "dependencies/sequence_logger-0.1.0-py3-none-any.whl"}
+ni-measurement-plugin-sdk-service = "2.1.0.dev2"
+ni-measurement-plugin-sdk-generator = "2.1.0.dev2"
+ni-python-styleguide = "^0.4.6"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
