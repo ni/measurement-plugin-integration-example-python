@@ -1,4 +1,4 @@
-from Clients import ${', '.join(instance_names)}
+from clients import ${', '.join(instance_names)}
 from sequence_logger import init_log
 
 init_log()

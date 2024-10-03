@@ -5,6 +5,17 @@ package-mode = true
 description = "Python sequence script generator by using Measurement Plug-In Client."
 authors = ["National Instruments"]
 readme = "README.md"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Manufacturing",
+    "Intended Audience :: Science/Research",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3.9",
+    # Poetry automatically adds classifiers for the license and the supported Python versions.
+    "Topic :: Scientific/Engineering",
+    "Topic :: System :: Hardware",
+]
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -14,12 +25,12 @@ sequence_logger = {path = "../../dist/sequence_logger-0.1.0.dev0-py3-none-any.wh
 ni-measurement-plugin-sdk-service = {version = "^2.1.0-dev2", allow-prereleases = true}
 ni-measurement-plugin-sdk-generator = {version = "^2.1.0-dev2", allow-prereleases = true}
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 mypy = "^1.11.2"
 ni-python-styleguide = "^0.4.6"
 
 [tool.poetry.scripts]
-python-sequencer = "python_sequencer.__main__:run_script"
+python-sequencer = "python_sequencer:run_script"
 
 [build-system]
 requires = ["poetry-core"]

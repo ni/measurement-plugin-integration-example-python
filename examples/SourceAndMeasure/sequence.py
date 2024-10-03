@@ -1,4 +1,4 @@
-from Clients import nidcpowersourcedcvoltageclient, nidmmmeasurementclient
+from clients import nidcpowersourcedcvoltageclient, nidmmmeasurementclient
 from sequence_logger import init_log
 
 init_log()
@@ -8,7 +8,7 @@ pin_map_methods = [
     nidmmmeasurementclient.register_pin_map,
 ]
 
-pin_map_path = r"path\\to\\pinmap\\file"  # update your pinmap path here
+pin_map_path = r"examples\SourceAndMeasure\PinMap.pinmap"  # update your pinmap path here
 
 # pinmap will be registered to all the instruments
 for register_pin_map in pin_map_methods:

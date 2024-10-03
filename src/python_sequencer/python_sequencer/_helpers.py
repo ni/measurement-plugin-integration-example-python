@@ -1,7 +1,7 @@
 import ast
 import pathlib
 import re
-from typing import Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 import click
 import ni_measurement_plugin_sdk_generator.client
@@ -111,20 +111,26 @@ def _delete_file(file_path: pathlib.Path) -> None:
         file_path.unlink(missing_ok=True)
 
 
+def _render_template(template_name: str, **template_args: Any) -> bytes:
+    """Renders the Mako template and returns the output as bytes."""
+    template_file_path = str(
+        pathlib.Path(__file__).parent / "templates" / template_name
+    )
+    template = Template(filename=template_file_path, input_encoding="utf-8", output_encoding="utf-8")
+    return template.render(**template_args)
+
+
 def _create_new_sequence_file(
-    file_path: pathlib.Path, instance_names: List[str], callables: List[str]
+    file_path: pathlib.Path, **template_args: Any
 ) -> None:
     """Writes a new Python file that initializes logging and registers pinmap methods."""
-    template_file_path = str(
-        pathlib.Path(__file__).parent / "templates" / "custom_sequencer.py.mako"
-    )
-    with open(template_file_path, "r") as template_file:
-        template_content = template_file.read()
-
-    template = Template(template_content)
-    rendered_content = template.render(instance_names=instance_names, callables=callables)
-
-    with open(file_path, "w") as file:
+    
+    try:
+        rendered_content = _render_template("sequence.py.mako", **template_args)
+    except Exception as e:
+        raise click.ClickException(f"An error occurred while rendering the template: {str(e)}")
+    
+    with open(file_path, "wb") as file:
         file.write(rendered_content)
 
     print(f"File created and sequence list written to {file_path}")
@@ -170,24 +176,24 @@ def analyze_functions_and_parameters(
 
 
 def clean_up(user_directory: pathlib.Path) -> None:
-    """Delete files in the Clients directory and remove the custom_sequencer.py file.
+    """Delete files in the clients directory and remove the sequence.py file.
 
     This method cleans up files in the given directory by removing all files within
-    the Clients subdirectory and deleting the custom_sequencer.py file if it exists.
+    the clients subdirectory and deleting the sequence.py file if it exists.
 
     Args:
-        user_directory: The path to the user directory containing the Clients directory
-                        and custom_sequencer.py file.
+        user_directory: The path to the user directory containing the clients directory
+                        and sequence.py file.
 
     Raises:
         FileNotFoundError: If the directory or files do not exist.
     """
-    client_directory = user_directory / "Clients"
+    client_directory = user_directory / "clients"
     for filename in client_directory.iterdir():
         file_path = client_directory / filename
         _delete_file(file_path)
 
-    sequencer_path = user_directory / "custom_sequencer.py"
+    sequencer_path = user_directory / "sequence.py"
     _delete_file(sequencer_path)
 
 
@@ -212,7 +218,7 @@ def configure_init_file(
     init_content: List[str] = []
 
     for module_name, class_name in zip(list_of_module_names, list_of_class_names):
-        init_content.append(f"from .{module_name} import {class_name}")
+        init_content.append(f"from clients.{module_name} import {class_name}")
     init_content.append("")
 
     for class_name in list_of_class_names:
@@ -234,13 +240,13 @@ def write_sequence_file(
 ) -> None:
     """Write a sequence file based on client directories and class names.
 
-    This method writes a new Python file called custom_sequencer.py based on the
+    This method writes a new Python file called sequence.py based on the
     provided client directories and class names.
 
     Args:
         list_of_client_directories: A list of paths to client directories containing the
                                     necessary modules.
-        user_directory: The path to the user directory where the custom_sequencer.py
+        user_directory: The path to the user directory where the sequence.py
                         file will be written.
         list_of_class_names: List of class names to be included in the sequence file.
 
@@ -252,7 +258,7 @@ def write_sequence_file(
     )  # assuming all clients have the same methods
     pinmap_methods: List[str] = [f"{func}" for func in methods if "pin" in func.lower()]
     _create_new_sequence_file(
-        file_path=user_directory / "custom_sequencer.py",
+        file_path=user_directory / "sequence.py",
         instance_names=[client.lower() for client in list_of_class_names],
         callables=pinmap_methods,
     )
@@ -273,7 +279,7 @@ def create_client(target_path: Optional[pathlib.Path] = None) -> None:
         Exception: If client generation fails for any reason.
     """
     user_directory = pathlib.Path(target_path)
-    client_module_directory = user_directory / "Clients"
+    client_module_directory = user_directory / "clients"
 
     if not client_module_directory.exists():
         client_module_directory.mkdir(parents=True, exist_ok=True)

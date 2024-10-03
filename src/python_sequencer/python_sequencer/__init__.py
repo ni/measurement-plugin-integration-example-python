@@ -11,7 +11,7 @@ from python_sequencer._helpers import create_client
 )
 def run_script(directory_out: pathlib.Path) -> None:
     """
-    Python Custom Sequencer is a Command line tool which uses `Client generator` by integration and utilizes the clients to sequence measurements.
+    The Python sequencer is a CLI tool that uses the ni-measurement-plugin-client-generator to generate clients and creates a getting-started sequence.
 
     The `directory_out` argument is a mandatory path to the directory where sequence files are stored.
     """

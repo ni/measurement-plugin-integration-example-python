@@ -78,8 +78,8 @@ Note: Before creating clients, the tool automatically handles directory cleanup 
 ## Client Integration
 
 - Install the client generator wheel package in the cwd using `pip install "path/to/wheel/package"`.
-- Import the module in the required file, i.e., `import ni_measurementlink_client.template`.
-- Use methods of the client generator such as `ni_measurementlink_client.template.method_to_be_called(args)`
+- Import the module in the required file, i.e., `import ni_measurement_plugin_sdk_generator.client`.
+- Use methods of the client generator such as `ni_measurement_plugin_sdk_generator.create_client.method_to_be_called(args)`
 - Have a list  `args = ["argument1", "argument2"]` which is to be passed to the method.
 - For generating client, use
 
