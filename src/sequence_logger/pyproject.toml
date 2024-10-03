@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sequence-logger"
-version = "0.1.0"
+version = "0.1.0-dev0"
 description = "A simple logger package"
 authors = ["National Instruments"]
 license = "MIT"

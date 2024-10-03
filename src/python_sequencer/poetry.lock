@@ -671,17 +671,17 @@ files = [
 
 [[package]]
 name = "sequence-logger"
-version = "0.1.0"
+version = "0.1.0.dev0"
 description = "A simple logger package"
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.8"
 files = [
-    {file = "sequence_logger-0.1.0-py3-none-any.whl", hash = "sha256:a43444b52d2fc9541d4feb433467b67afa32307c2d7e6808aa337d2cf96eebf9"},
+    {file = "sequence_logger-0.1.0.dev0-py3-none-any.whl", hash = "sha256:4b8df66763139a7aeb34421801efd368e484ef49fc56c6f3a1c2fdb9075446d5"},
 ]
 
 [package.source]
 type = "file"
-url = "dependencies/sequence_logger-0.1.0-py3-none-any.whl"
+url = "../../dist/sequence_logger-0.1.0.dev0-py3-none-any.whl"
 
 [[package]]
 name = "setuptools"
@@ -727,13 +727,13 @@ files = [
 
 [[package]]
 name = "tomli"
-version = "2.0.1"
+version = "2.0.2"
 description = "A lil' TOML parser"
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.8"
 files = [
-    {file = "tomli-2.0.1-py3-none-any.whl", hash = "sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc"},
-    {file = "tomli-2.0.1.tar.gz", hash = "sha256:de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f"},
+    {file = "tomli-2.0.2-py3-none-any.whl", hash = "sha256:2ebe24485c53d303f690b0ec092806a085f07af5a5aa1464f3931eec36caaa38"},
+    {file = "tomli-2.0.2.tar.gz", hash = "sha256:d46d457a85337051c36524bc5349dd91b1877838e2979ac5ced3e710ed8a60ed"},
 ]
 
 [[package]]
@@ -760,4 +760,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "8dee9d607712e6778ebb622ebfc50b2978941136e787831c2399f7a36c6bbc0f"
+content-hash = "eae7e2666bf2313bc0a6491bbbfd0cba1d86b246f6b593e79ccbaaa0255baffa"
