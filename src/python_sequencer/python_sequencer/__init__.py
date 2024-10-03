@@ -1,7 +1,7 @@
 import pathlib
 
 import click
-from python_sequencer._client_handler import create_client
+from python_sequencer._helpers import create_client
 
 
 @click.command()

@@ -10,12 +10,12 @@ This tool serves as a reference example for integrating the client generator and
 
 Ensure Poetry is installed on your system to manage the Python environment and dependencies.
 
-### Step 2: Run the Script
+### Step 2: Run the Package
 
-You can run the provided script `main.py` using the command line. The script now requires a mandatory argument to specify the directory where the generated clients and sequence files will be stored.
+You can run the package `python-sequencer` using the command line. The script now requires a mandatory argument to specify the directory where the generated clients and sequence files will be stored.
 
-```cli
-python main.py /path/to/sequence/directory
+```bash
+python-sequencer /path/to/sequence/directory
 ```
 
 - **/path/to/sequence/directory** (mandatory): The path to the directory where the generated clients and sequence files will be stored. Ensure that the directory exists and has write permissions.
@@ -25,9 +25,8 @@ python main.py /path/to/sequence/directory
 When you run the script with the specified directory, it will:
 
 1. Enumerate available Measurement services.
-2. Create a client for each available service.
-3. Move the created client to the specified target directory.
-4. Generate or update a `custom_sequencer.py` file, which includes a start-up sequence code for the created clients.
+2. Create a client for each available service to the specified target directory.
+3. Generate or update a `custom_sequencer.py` file, which includes a start-up sequence code for the created clients.
 
 ### Step 4: Generated Sequence File
 
@@ -44,7 +43,7 @@ Users can modify this file to define their own sequences for the generated clien
 
 - Make sure to install this logging package in your sequence directory by using
 
- ```cli
+ ```bash
  pip install /path/to/sequence_logger-x.x.x-py3-none-any.whl
  ```
 
@@ -117,12 +116,12 @@ Note: Before creating clients, the tool automatically handles directory cleanup 
   - ni-measurement-plugin-sdk-service
   - ni-measurement-plugin-sdk-generator
 - **For sequence execution**
-  - sequence_logger-0.1.0-py3-none-any.whl
+  - sequence_logger-0.1.0.dev0-py3-none-any.whl
   - ni-measurement-plugin-sdk-service
 
-These wheel packages has been provided in `python-sequencer\dependencies\` directory.
+`sequence_logger-0.1.0.dev0-py3-none-any.whl` has been provided in `root\dist` directory.
 
 ### Example Usage
 
-- `python main.py /my/sequence/directory`
+- `python-sequencer /my/sequence/directory`
     This command generates new clients and a sequence file in the `/my/sequence/directory` directory.
