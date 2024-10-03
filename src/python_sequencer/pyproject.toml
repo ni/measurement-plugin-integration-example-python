@@ -18,6 +18,9 @@ ni-measurement-plugin-sdk-generator = {version = "^2.1.0-dev2", allow-prerelease
 mypy = "^1.11.2"
 ni-python-styleguide = "^0.4.6"
 
+[tool.poetry.scripts]
+python-sequencer = "python_sequencer.__main__:run_script"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
