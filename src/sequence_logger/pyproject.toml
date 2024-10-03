@@ -10,9 +10,6 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-packages = [
-    { include = "sequence_logger", from = "src" }
-]
 
 [tool.poetry.dependencies]
 python = ">=3.8"
