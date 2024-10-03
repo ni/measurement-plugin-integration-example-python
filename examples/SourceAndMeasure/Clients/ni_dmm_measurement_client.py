@@ -1,4 +1,4 @@
-"""Generated client API for the 'NI-DCPower Source DC Voltage (Py)' measurement plug-in."""
+"""Generated client API for the 'NI-DMM Measurement (Py)' measurement plug-in."""
 
 from __future__ import annotations
 
@@ -6,6 +6,7 @@ import logging
 import pathlib
 import threading
 import typing
+from enum import Enum
 
 import grpc
 from google.protobuf import any_pb2, descriptor_pool
@@ -30,18 +31,37 @@ _logger = logging.getLogger(__name__)
 _V2_MEASUREMENT_SERVICE_INTERFACE = "ni.measurementlink.measurement.v2.MeasurementService"
 
 
+class MeasurementTypeEnum(Enum):
+    """MeasurementTypeEnum used for enum-typed measurement configs and outputs."""
+
+    NONE = 0
+    DC_VOLTS = 1
+    AC_VOLTS = 2
+    DC_CURRENT = 3
+    AC_CURRENT = 4
+    TWO_WIRE_RES = 5
+    FOUR_WIRE_RES = 101
+    FREQ = 104
+    PERIOD = 105
+    TEMPERATURE = 108
+    AC_VOLTS_DC_COUPLED = 1001
+    DIODE = 1002
+    WAVEFORM_VOLTAGE = 1003
+    WAVEFORM_CURRENT = 1004
+    CAPACITANCE = 1005
+    INDUCTANCE = 1006
+
+
 class Outputs(typing.NamedTuple):
-    """Outputs for the 'NI-DCPower Source DC Voltage (Py)' measurement plug-in."""
+    """Outputs for the 'NI-DMM Measurement (Py)' measurement plug-in."""
 
-    measurement_sites: typing.Sequence[int]
-    measurement_pin_names: typing.Sequence[str]
-    voltage_measurements: typing.Sequence[float]
-    current_measurements: typing.Sequence[float]
-    in_compliance: typing.Sequence[bool]
+    measured_value: float
+    signal_out_of_range: bool
+    absolute_resolution: float
 
 
-class NIDCPowerSourceDCVoltage_Python:
-    """Client for the 'NI-DCPower Source DC Voltage (Py)' measurement plug-in."""
+class NIDmmMeasurementClient:
+    """Client for the 'NI-DMM Measurement (Py)' measurement plug-in."""
 
     def __init__(
         self,
@@ -63,7 +83,7 @@ class NIDCPowerSourceDCVoltage_Python:
             grpc_channel_pool: An optional gRPC channel pool.
         """
         self._initialization_lock = threading.RLock()
-        self._service_class = "ni.examples.NIDCPowerSourceDCVoltage_Python"
+        self._service_class = "ni.examples.NIDmmMeasurement_Python"
         self._version = "0.0.1"
         self._grpc_channel_pool = grpc_channel_pool
         self._discovery_client = discovery_client
@@ -74,118 +94,81 @@ class NIDCPowerSourceDCVoltage_Python:
         ] = None
         self._configuration_metadata = {
             1: ParameterMetadata(
-                display_name="pin_names",
+                display_name="pin_name",
                 type=Field.Kind.ValueType(9),
-                repeated=True,
-                default_value=["Pin1"],
+                repeated=False,
+                default_value="Pin1",
                 annotations={
-                    "ni/ioresource.instrument_type": "niDCPower",
+                    "ni/ioresource.instrument_type": "niDMM",
                     "ni/type_specialization": "ioresource",
                 },
                 message_type="",
-                field_name="pin_names",
+                field_name="pin_name",
                 enum_type=None,
             ),
             2: ParameterMetadata(
-                display_name="voltage_level",
-                type=Field.Kind.ValueType(1),
+                display_name="measurement_type",
+                type=Field.Kind.ValueType(14),
                 repeated=False,
-                default_value=6.0,
-                annotations={},
+                default_value=1,
+                annotations={
+                    "ni/enum.values": '{"NONE": 0, "DC_VOLTS": 1, "AC_VOLTS": 2, "DC_CURRENT": 3, "AC_CURRENT": 4, "TWO_WIRE_RES": 5, "FOUR_WIRE_RES": 101, "FREQ": 104, "PERIOD": 105, "TEMPERATURE": 108, "AC_VOLTS_DC_COUPLED": 1001, "DIODE": 1002, "WAVEFORM_VOLTAGE": 1003, "WAVEFORM_CURRENT": 1004, "CAPACITANCE": 1005, "INDUCTANCE": 1006}',
+                    "ni/type_specialization": "enum",
+                },
                 message_type="",
-                field_name="voltage_level",
-                enum_type=None,
+                field_name="measurement_type",
+                enum_type=MeasurementTypeEnum,
             ),
             3: ParameterMetadata(
-                display_name="voltage_level_range",
+                display_name="range",
                 type=Field.Kind.ValueType(1),
                 repeated=False,
-                default_value=6.0,
+                default_value=10.0,
                 annotations={},
                 message_type="",
-                field_name="voltage_level_range",
+                field_name="range",
                 enum_type=None,
             ),
             4: ParameterMetadata(
-                display_name="current_limit",
+                display_name="resolution_digits",
                 type=Field.Kind.ValueType(1),
                 repeated=False,
-                default_value=0.01,
+                default_value=5.5,
                 annotations={},
                 message_type="",
-                field_name="current_limit",
-                enum_type=None,
-            ),
-            5: ParameterMetadata(
-                display_name="current_limit_range",
-                type=Field.Kind.ValueType(1),
-                repeated=False,
-                default_value=0.01,
-                annotations={},
-                message_type="",
-                field_name="current_limit_range",
-                enum_type=None,
-            ),
-            6: ParameterMetadata(
-                display_name="source_delay",
-                type=Field.Kind.ValueType(1),
-                repeated=False,
-                default_value=0.0,
-                annotations={},
-                message_type="",
-                field_name="source_delay",
+                field_name="resolution_digits",
                 enum_type=None,
             ),
         }
         self._output_metadata = {
             1: ParameterMetadata(
-                display_name="measurement_sites",
-                type=Field.Kind.ValueType(5),
-                repeated=True,
+                display_name="measured_value",
+                type=Field.Kind.ValueType(1),
+                repeated=False,
                 default_value=None,
                 annotations={},
                 message_type="",
-                field_name="measurement_sites",
+                field_name="measured_value",
                 enum_type=None,
             ),
             2: ParameterMetadata(
-                display_name="measurement_pin_names",
-                type=Field.Kind.ValueType(9),
-                repeated=True,
+                display_name="signal_out_of_range",
+                type=Field.Kind.ValueType(8),
+                repeated=False,
                 default_value=None,
                 annotations={},
                 message_type="",
-                field_name="measurement_pin_names",
+                field_name="signal_out_of_range",
                 enum_type=None,
             ),
             3: ParameterMetadata(
-                display_name="voltage_measurements",
+                display_name="absolute_resolution",
                 type=Field.Kind.ValueType(1),
-                repeated=True,
+                repeated=False,
                 default_value=None,
                 annotations={},
                 message_type="",
-                field_name="voltage_measurements",
-                enum_type=None,
-            ),
-            4: ParameterMetadata(
-                display_name="current_measurements",
-                type=Field.Kind.ValueType(1),
-                repeated=True,
-                default_value=None,
-                annotations={},
-                message_type="",
-                field_name="current_measurements",
-                enum_type=None,
-            ),
-            5: ParameterMetadata(
-                display_name="in_compliance",
-                type=Field.Kind.ValueType(8),
-                repeated=True,
-                default_value=None,
-                annotations={},
-                message_type="",
-                field_name="in_compliance",
+                field_name="absolute_resolution",
                 enum_type=None,
             ),
         }
@@ -298,12 +281,10 @@ class NIDCPowerSourceDCVoltage_Python:
 
     def measure(
         self,
-        pin_names: typing.Iterable[str] = ["Pin1"],
-        voltage_level: float = 6.0,
-        voltage_level_range: float = 6.0,
-        current_limit: float = 0.01,
-        current_limit_range: float = 0.01,
-        source_delay: float = 0.0,
+        pin_name: str = "Pin1",
+        measurement_type: MeasurementTypeEnum = MeasurementTypeEnum.DC_VOLTS,
+        range: float = 10.0,
+        resolution_digits: float = 5.5,
     ) -> Outputs:
         """Perform a single measurement.
 
@@ -311,12 +292,7 @@ class NIDCPowerSourceDCVoltage_Python:
             Measurement outputs.
         """
         stream_measure_response = self.stream_measure(
-            pin_names,
-            voltage_level,
-            voltage_level_range,
-            current_limit,
-            current_limit_range,
-            source_delay,
+            pin_name, measurement_type, range, resolution_digits
         )
         for response in stream_measure_response:
             result = response
@@ -324,26 +300,17 @@ class NIDCPowerSourceDCVoltage_Python:
 
     def stream_measure(
         self,
-        pin_names: typing.Iterable[str] = ["Pin1"],
-        voltage_level: float = 6.0,
-        voltage_level_range: float = 6.0,
-        current_limit: float = 0.01,
-        current_limit_range: float = 0.01,
-        source_delay: float = 0.0,
+        pin_name: str = "Pin1",
+        measurement_type: MeasurementTypeEnum = MeasurementTypeEnum.DC_VOLTS,
+        range: float = 10.0,
+        resolution_digits: float = 5.5,
     ) -> typing.Generator[Outputs, None, None]:
         """Perform a streaming measurement.
 
         Returns:
             Stream of measurement outputs.
         """
-        parameter_values = [
-            pin_names,
-            voltage_level,
-            voltage_level_range,
-            current_limit,
-            current_limit_range,
-            source_delay,
-        ]
+        parameter_values = [pin_name, measurement_type, range, resolution_digits]
         with self._initialization_lock:
             if self._measure_response is not None:
                 raise RuntimeError(

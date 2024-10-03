@@ -1,7 +1,5 @@
-from .NIDCPowerSourceDCVoltage_Python_client import NIDCPowerSourceDCVoltage_Python
-from .NIDmmMeasurement_Python_client import NIDmmMeasurement_Python
-from .SampleMeasurement_Python_client import SampleMeasurement_Python
+from .nidc_power_source_dc_voltage_client import NIDCPowerSourceDCVoltageClient
+from .ni_dmm_measurement_client import NIDmmMeasurementClient
 
-nidcpowersourcedcvoltage_python = NIDCPowerSourceDCVoltage_Python()
-nidmmmeasurement_python = NIDmmMeasurement_Python()
-samplemeasurement_python = SampleMeasurement_Python()
+nidcpowersourcedcvoltageclient = NIDCPowerSourceDCVoltageClient()
+nidmmmeasurementclient = NIDmmMeasurementClient()
