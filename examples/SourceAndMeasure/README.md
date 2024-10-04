@@ -1,18 +1,18 @@
 # Client Manager and Sequencer Tool
 
-## Example: Source and Measure
+## Example: Source and Measure DC Voltage
 
 This is a Python sequencer example that sequences two clients. `NI-DCPower` for sourcing and `NI-DMM` for measurement.
 
 ## What does this example accomplish?
 
-- Generated client for `NI-DCPower` and `NI-DMM` measurement-plugins
-- Registers the pinmap for the instruments using the start-up code provided.
-- Call `measure` APIs from the measurement-plugin clients
-- Sources with `NI-DCPower` first
-  - If the result is in compliance,
-    - Measures with `NI-DMM` second
-- Logs the results and values
+- Uses the clients generated for the NI-DCPower Source DC Voltage and NI-DMM measurement plug-ins.
+- Registers the pin map using the provided start-up code.
+- Calls the measure APIs from the respective measurement plug-in clients.
+- Initiates sourcing with NI-DCPower.
+  - If the result meets compliance standards:
+    - Proceeds with measurement using NI-DMM.
+- Logs the measured values and corresponding results.
 
 ## How to run the example?
 

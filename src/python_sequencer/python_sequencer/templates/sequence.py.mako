@@ -11,10 +11,10 @@ pin_map_methods = [
 % endfor
 ]
 
-pin_map_path = r"path\\to\\pinmap\\file"  # update your pinmap path here
+pin_map_path = r"path\to\pinmap\file.pinmap"  # TODO: Update your pin map path here.
 
-# pinmap will be registered to all the instruments
+# Register the pin map with all the measurement plug-in clients
 for register_pin_map in pin_map_methods:
     register_pin_map(pin_map_path)
 
-# write your sequence here
+# TODO: Write your sequence logic here.

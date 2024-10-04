@@ -2,7 +2,7 @@
 
 ## Overview
 
-This tool serves as a reference example for integrating the client generator and enabling the sequencing of measurement services using the generated clients. For client generation, the integration of `ni-measurement-plugin-client-generator` is required. To achieve it please refer [Client Integration](#client-integration) section.
+This tool serves as a reference example for integrating the measurement plug-in client generator and enabling the sequencing of measurement services using the generated clients. For generating clients for measurement plug-ins, the `ni-measurement-plugin-client-generator` is used. Please refer to the [Client Integration](#client-integration) guide for detailed instructions.
 
 ## Steps to use the Reference Sequence tool
 
@@ -34,21 +34,18 @@ After client creation, the tool generates a `sequence.py` file with the followin
 
 - `pin_map_methods`: A list of methods related to the client's pinmap.
 - A loop that registers the pinmap for each method.
-  
 Users can modify this file to define their own sequences for the generated clients.
 
 ### Step 5: Logging Setup
 
-- To ensure logging functionality across all modules, a custom logging package (`sequence_logger.py`) has been provided as a pre-built wheel package.
-
+- To ensure logging functionality across all modules, a custom logging package (`sequence_logger`) has been provided as a package.
 - Make sure to install this logging package in your sequence directory by using
 
  ```bash
  pip install /path/to/sequence_logger-x.x.x-py3-none-any.whl
  ```
 
-- This enables the `sequence.py` file to import and utilize the logging capabilities correctly.
-
+- This enables the `sequence-logger` to be imported and utilize the logging capabilities correctly.
 - Once installed, the logging package will initialize the logging configuration for the script, helping capture logs from various operations throughout the sequence.
 
 ```text
@@ -61,18 +58,14 @@ Note: Before creating clients, the tool automatically handles directory cleanup 
 ## Advantages
 
 - **Client Creation**: Automatically generates clients for all active measurements.
-
 - **Startup Code Generation**: Provides initial code in the `sequence.py` file for sequence execution, making customization easier.
-
 - **Logging**: Logs sequencer operations, including arguments and results, to a CSV file, enhancing tracking and debugging capabilities.
-
 - **Clean-up**: When an existing sequence directory is given, the `clients` module and `sequence.py` file will be cleaned up and it starts generating newly.
 
 ## Disadvantages
 
 - **Incomplete Dependency Management**: Full dependency management for the sequence directory is not yet implemented.
   - No `pyproject.toml` file has been provided with the start-up code, instead the user need to install the wheel packages *[(logger and measurement-service)](#dependencies)* manually(`pip install "path/to/wheel/package"`) in their sequence directory.
-
 - **Reference Example**: It is not a full-fledged sequencer but rather acts as a reference example, which might require further development for production use.
 
 ## Client Integration
