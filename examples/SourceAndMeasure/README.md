@@ -16,7 +16,6 @@ This is a Python sequencer example that sequences two clients. `NI-DCPower` for 
 
 ## How to run the example?
 
-- Use the `.venv` created by the `src\python_sequencer\pyproject.toml` file.
-  - Manually verify that all dependencies are installed correctly by reviewing the `sequence.py` file.
+- Ensure that you have the `ni-measurement-plugin-sdk-service` installed in your machine or virtual environment.
 - Execute the `sequence.py` file directly.
 - After execution, the results will be logged in `logs\` directory.
