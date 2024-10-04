@@ -20,17 +20,17 @@ python-sequencer /path/to/sequence/directory
 
 - **/path/to/sequence/directory** (mandatory): The path to the directory where the generated clients and sequence files will be stored. Ensure that the directory exists and has write permissions.
 
-### Step 3: Creating Clients
+### Step 3: Creating clients
 
 When you run the script with the specified directory, it will:
 
 1. Enumerate available Measurement services.
 2. Create a client for each available service to the specified target directory.
-3. Generate or update a `custom_sequencer.py` file, which includes a start-up sequence code for the created clients.
+3. Generate or update a `sequence.py` file, which includes a start-up sequence code for the created clients.
 
 ### Step 4: Generated Sequence File
 
-After client creation, the tool generates a `custom_sequencer.py` file with the following:
+After client creation, the tool generates a `sequence.py` file with the following:
 
 - `pin_map_methods`: A list of methods related to the client's pinmap.
 - A loop that registers the pinmap for each method.
@@ -47,7 +47,7 @@ Users can modify this file to define their own sequences for the generated clien
  pip install /path/to/sequence_logger-x.x.x-py3-none-any.whl
  ```
 
-- This enables the `custom_sequencer.py` file to import and utilize the logging capabilities correctly.
+- This enables the `sequence.py` file to import and utilize the logging capabilities correctly.
 
 - Once installed, the logging package will initialize the logging configuration for the script, helping capture logs from various operations throughout the sequence.
 
@@ -55,18 +55,18 @@ Users can modify this file to define their own sequences for the generated clien
 Note: Before creating clients, the tool automatically handles directory cleanup by,
     - Clearing the content of the `__init__.py` file (if it exists).
     - Removing all generated clients.
-    - Deleting the `custom_sequencer.py` file (if present).
+    - Deleting the `sequence.py` file (if present).
 ```
 
 ## Advantages
 
 - **Client Creation**: Automatically generates clients for all active measurements.
 
-- **Startup Code Generation**: Provides initial code in the `custom_sequencer.py` file for sequence execution, making customization easier.
+- **Startup Code Generation**: Provides initial code in the `sequence.py` file for sequence execution, making customization easier.
 
 - **Logging**: Logs sequencer operations, including arguments and results, to a CSV file, enhancing tracking and debugging capabilities.
 
-- **Clean-up**: When an existing sequence directory is given, the `Clients` module and `custom_sequencer.py` file will be cleaned up and it starts generating newly.
+- **Clean-up**: When an existing sequence directory is given, the `clients` module and `sequence.py` file will be cleaned up and it starts generating newly.
 
 ## Disadvantages
 
