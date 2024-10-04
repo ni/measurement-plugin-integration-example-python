@@ -66,7 +66,6 @@ Note: Before creating clients, the tool automatically handles directory cleanup 
 
 - **Incomplete Dependency Management**: Full dependency management for the sequence directory is not yet implemented.
   - No `pyproject.toml` file has been provided with the start-up code, instead the user need to install the wheel packages *[(logger and measurement-service)](#dependencies)* manually(`pip install "path/to/wheel/package"`) in their sequence directory.
-- **Reference Example**: It is not a full-fledged sequencer but rather acts as a reference example, which might require further development for production use.
 
 ## Client Integration
 

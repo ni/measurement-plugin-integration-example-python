@@ -27,7 +27,7 @@ ni-measurement-plugin-sdk-generator = {version = "^2.1.0-dev2", allow-prerelease
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.11.2"
 ni-python-styleguide = "^0.4.6"
-sequence_logger = {path = "../sequence_logger", develop = true}
+sequence_logger = {path = "../sequence_logger", develop = true}  # Required only for sequence execution, not for generation.
 
 [tool.poetry.scripts]
 python-sequencer = "python_sequencer:run_script"
