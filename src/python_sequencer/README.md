@@ -2,7 +2,7 @@
 
 ## Overview
 
-This tool serves as a reference example for integrating the client generator and enabling the sequencing of measurement services using the generated clients. For client generation, the integration of "Measurement Service Client Generator" is required. To achieve it please refer [Client Integration](#client-integration) section.
+This tool serves as a reference example for integrating the client generator and enabling the sequencing of measurement services using the generated clients. For client generation, the integration of `ni-measurement-plugin-client-generator` is required. To achieve it please refer [Client Integration](#client-integration) section.
 
 ## Steps to use the Reference Sequence tool
 
@@ -77,9 +77,9 @@ Note: Before creating clients, the tool automatically handles directory cleanup 
 
 ## Client Integration
 
-- Install the client generator wheel package in the cwd using `pip install "path/to/wheel/package"`.
+- Install the client generator package in the cwd using `pip install ni-measurement-plugin-sdk-generator`.
 - Import the module in the required file, i.e., `import ni_measurement_plugin_sdk_generator.client`.
-- Use methods of the client generator such as `ni_measurement_plugin_sdk_generator.create_client.method_to_be_called(args)`
+- Use methods of the client generator such as `ni_measurement_plugin_sdk_generator.client.create_client.method_to_be_called(args)`
 - Have a list  `args = ["argument1", "argument2"]` which is to be passed to the method.
 - For generating client, use
 

@@ -36,6 +36,6 @@ init_log()
 
 ## Configuration
 
-By default, logs methods from modules starting with 'Clients.'. Modify `apply_logging_to_all_modules` function to change this behavior.
+By default, logs methods from modules starting with 'clients.'. Modify `apply_logging_to_all_modules` function to change this behavior.
 
 Logs are stored in CSV files in a 'logs' directory within your current working directory.

@@ -158,7 +158,7 @@ def apply_logging_to_all_modules():
     Apply logging to all modules that match a specific pattern.
     """
     for module_name, module in sys.modules.items():
-        if module_name.startswith("Clients."):
+        if module_name.startswith("clients."):
             apply_logging_to_module(module)
 
 
