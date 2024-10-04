@@ -106,30 +106,27 @@ def _clear_file(file_path: pathlib.Path) -> None:
 
 def _delete_file(file_path: pathlib.Path) -> None:
     """Deletes a file if it exists."""
-    file_path = pathlib.Path(file_path)
     if file_path.is_file():
         file_path.unlink(missing_ok=True)
 
 
 def _render_template(template_name: str, **template_args: Any) -> bytes:
     """Renders the Mako template and returns the output as bytes."""
-    template_file_path = str(
-        pathlib.Path(__file__).parent / "templates" / template_name
+    template_file_path = str(pathlib.Path(__file__).parent / "templates" / template_name)
+    template = Template(
+        filename=template_file_path, input_encoding="utf-8", output_encoding="utf-8"
     )
-    template = Template(filename=template_file_path, input_encoding="utf-8", output_encoding="utf-8")
     return template.render(**template_args)
 
 
-def _create_new_sequence_file(
-    file_path: pathlib.Path, **template_args: Any
-) -> None:
+def _create_new_sequence_file(file_path: pathlib.Path, **template_args: Any) -> None:
     """Writes a new Python file that initializes logging and registers pinmap methods."""
-    
+
     try:
         rendered_content = _render_template("sequence.py.mako", **template_args)
     except Exception as e:
         raise click.ClickException(f"An error occurred while rendering the template: {str(e)}")
-    
+
     with open(file_path, "wb") as file:
         file.write(rendered_content)
 
@@ -221,8 +218,8 @@ def configure_init_file(
         init_content.append(f"from clients.{module_name} import {class_name}")
     init_content.append("")
 
-    for class_name in list_of_class_names:
-        init_content.append(f"{class_name.lower()} = {class_name}()")
+    for module_name, class_name in zip(list_of_module_names, list_of_class_names):
+        init_content.append(f"{module_name} = {class_name}()")
 
     init_content = "\n".join(init_content)
     init_file_path = client_module_directory / "__init__.py"
@@ -236,7 +233,7 @@ def configure_init_file(
 def write_sequence_file(
     list_of_client_directories: List[pathlib.Path],
     user_directory: pathlib.Path,
-    list_of_class_names: List[str],
+    list_of_module_names: List[str],
 ) -> None:
     """Write a sequence file based on client directories and class names.
 
@@ -248,7 +245,7 @@ def write_sequence_file(
                                     necessary modules.
         user_directory: The path to the user directory where the sequence.py
                         file will be written.
-        list_of_class_names: List of class names to be included in the sequence file.
+        list_of_module_names: List of module names to be included in the sequence file.
 
     Raises:
         FileNotFoundError: If the provided directory paths do not exist.
@@ -259,7 +256,7 @@ def write_sequence_file(
     pinmap_methods: List[str] = [f"{func}" for func in methods if "pin" in func.lower()]
     _create_new_sequence_file(
         file_path=user_directory / "sequence.py",
-        instance_names=[client.lower() for client in list_of_class_names],
+        instance_names=[client for client in list_of_module_names],
         callables=pinmap_methods,
     )
 
@@ -307,8 +304,9 @@ def create_client(target_path: Optional[pathlib.Path] = None) -> None:
         ]
         try:
             ni_measurement_plugin_sdk_generator.client.create_client.main(args=args)
-        except SystemExit:
-            pass
+        except SystemExit as e:
+            if e.code != 0:
+                continue
         except Exception as e:
             raise Exception("Exception thrown from client generation: ", e)
 
@@ -324,7 +322,7 @@ def create_client(target_path: Optional[pathlib.Path] = None) -> None:
     )
 
     write_sequence_file(
-        list_of_class_names=list_of_class_names,
         list_of_client_directories=list_of_client_directories,
+        list_of_module_names=list_of_module_names,
         user_directory=user_directory,
     )
