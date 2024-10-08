@@ -15,5 +15,6 @@ This Python sequencer example demonstrates how to stream a measurement and cance
 ## How to run the example?
 
 - Ensure that you have the `ni-measurement-plugin-sdk-service` installed in your machine or virtual environment.
+- To ensure logging functionality install `sequence_logger` package which can be found in `repo\dist\`.
 - Execute the `sequence.py` file directly.
 - After execution, the results will be logged in the `logs\` directory, which will get created in the current working directory.
