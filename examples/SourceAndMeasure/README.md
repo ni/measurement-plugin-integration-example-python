@@ -1,6 +1,4 @@
-# Client Manager and Sequencer Tool
-
-## Example: Source and Measure DC Voltage
+# Example: Source and Measure DC Voltage
 
 This Python sequencer example sequences two measurements, where the `NI-DCPower` is used for sourcing and `NI-DMM` for measurement.
 
