@@ -2,7 +2,7 @@
 
 ## Example: Source and Measure DC Voltage
 
-This is a Python sequencer example that sequences two clients. `NI-DCPower` for sourcing and `NI-DMM` for measurement.
+This Python sequencer example sequences two measurements, where the `NI-DCPower` is used for sourcing and `NI-DMM` for measurement.
 
 ## What does this example accomplish?
 
@@ -18,4 +18,4 @@ This is a Python sequencer example that sequences two clients. `NI-DCPower` for 
 
 - Ensure that you have the `ni-measurement-plugin-sdk-service` installed in your machine or virtual environment.
 - Execute the `sequence.py` file directly.
-- After execution, the results will be logged in `logs\` directory.
+- After execution, the results will be logged in `logs\` directory, which will get created in the current working directory.

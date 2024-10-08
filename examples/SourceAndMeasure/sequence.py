@@ -8,13 +8,13 @@ pin_map_methods = [
     ni_dmm_measurement_client.register_pin_map,
 ]
 
-pin_map_path = r"examples\SourceAndMeasure\PinMap.pinmap"  # TODO: Update your pin map path here.
+pin_map_path = r"examples\SourceAndMeasure\PinMap.pinmap"
 
 # Register the pin map with all the measurement plug-in clients
 for register_pin_map in pin_map_methods:
     register_pin_map(pin_map_path)
 
-# TODO: Write your sequence logic here.
+# Sequence logic
 dcpower_result = nidc_power_source_dc_voltage_client.measure(pin_names=['DUTPin2'])
 if(dcpower_result.in_compliance):
     ni_dmm_measurement_client.measure(pin_name="DUTPin1")
