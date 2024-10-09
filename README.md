@@ -23,7 +23,7 @@ Ensure Poetry is installed on your system to manage the Python environment and d
 
 ### Step 2: Run the Package
 
-You can run the package `python-sequencer` using the command line. The script now requires a mandatory argument to specify the directory where the generated clients and sequence files will be stored.
+To run the `python-sequencer`, open your command line and enter:
 
 ```bash
 python-sequencer /path/to/sequence/directory
@@ -33,11 +33,11 @@ python-sequencer /path/to/sequence/directory
 
 ### Step 3: Creating clients
 
-When you run the script with the specified directory, it will:
+When you run the command:
 
-1. Enumerate available Measurement services.
-2. Create a client for each available service to the specified target directory.
-3. Generate or update a `sequence.py` file, which includes a start-up sequence code for the created clients.
+1. The tool will find all available measurement services.
+2. It will create a client for each service in the specified directory.
+3. Generate a `sequence.py` file, which includes a start-up sequence code for the created clients.
 
 ### Step 4: Generated Sequence File
 
