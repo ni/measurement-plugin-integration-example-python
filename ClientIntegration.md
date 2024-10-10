@@ -1,4 +1,4 @@
-# ntegrating with Custom Application - {to be changed}
+# Integrating with Custom Application - {to be changed}
 
 ## Challenges in Sequencing Measurement Plug-Ins
 
@@ -11,6 +11,7 @@ This is where the measurement plug-in clients come into the picture. It allows u
 ### Sequence workflow using the Measurement Client Generator
 
 Below is a visual representation of how the measurement client generator helps in sequencing measurement plug-ins.
+
 ![measurement-clients-sequence-workflow](/docs/images/measurement-clients-sequence-workflow.PNG)
 
 The steps for integrating the measurement client generator tool with the user application have been provided in the [Measurement Client Integration](#measurement-client-integration) section.
