@@ -2,9 +2,9 @@
 
 ## Overview
 
-This tool serves as a reference example for integrating the measurement plug-in client generator and enabling the sequencing of measurement services using the generated clients. For generating clients for measurement plug-ins, the `ni-measurement-plugin-client-generator` is used.
+This tool is a reference for integrating the measurement plug-in client generator and enabling the sequencing of measurement services using the generated clients. For generating clients for measurement plug-ins, the `ni-measurement-plugin-client-generator` is used.
 
-*Note: **Please go through the [sequence-workflow](/ClientIntegration.md) file before reading this document.***
+*Note: **Please go through the [Client Integration](/ClientIntegration.md) file before reading this document.***
 
 ## Workflow Diagram
 
@@ -12,16 +12,16 @@ This tool serves as a reference example for integrating the measurement plug-in 
 
 ## Dependencies
 
-- **For Reference sequencer**
+- **For sequencer**
   - ni-measurement-plugin-sdk-service
   - ni-measurement-plugin-sdk-generator
 - **For sequence execution**
   - sequence_logger-0.1.0.dev0-py3-none-any.whl
   - ni-measurement-plugin-sdk-service
 
-`sequence_logger-0.1.0.dev0-py3-none-any.whl` has been provided in `root\dist` directory.
+`sequence_logger-0.1.0.dev0-py3-none-any.whl` is available in the `root\dist` directory.
 
-## Steps to use the Reference Sequence tool
+## Steps to use the Sequencer tool
 
 ### Step 1: Install Poetry
 
