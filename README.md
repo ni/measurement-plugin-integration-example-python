@@ -1,8 +1,14 @@
-# Python Sequencer - A Reference Example
+# Python Sequencer - An example sequencer
 
 ## Overview
 
-This tool serves as a reference example for integrating the measurement plug-in client generator and enabling the sequencing of measurement services using the generated clients. For generating clients for measurement plug-ins, the `ni-measurement-plugin-client-generator` is used. Please refer to the [Client Integration](#client-integration) guide for detailed instructions.
+This tool serves as a reference example for integrating the measurement plug-in client generator and enabling the sequencing of measurement services using the generated clients. For generating clients for measurement plug-ins, the `ni-measurement-plugin-client-generator` is used.
+
+*Note: **Please go through the [sequence-workflow](/ClientIntegration.md) file before reading this document.***
+
+## Workflow Diagram
+
+![sequencer-example-workflow-diagram](/docs/images/sequencer-example-workflow-diagram.PNG)
 
 ## Dependencies
 
@@ -66,54 +72,24 @@ Note: Before creating clients, the tool automatically handles directory cleanup 
     - Deleting the `sequence.py` file (if present).
 ```
 
+### Step 6: Execute the Sequence
+
+- To execute the sequence, run the `sequence.py` file.
+- After execution, you can find the results along with the parameters in a log file which will be stored in the current working directory as a CSV file.
+
 ### Example Usage
 
 - `python-sequencer /my/sequence/directory`
     This command generates new clients and a sequence file in the `/my/sequence/directory` directory.
 
-## Advantages
+## Merits
 
 - **Client Creation**: Automatically generates clients for all active measurements.
 - **Startup Code Generation**: Provides initial code in the `sequence.py` file for sequence execution, making customization easier.
 - **Logging**: Logs sequencer operations, including arguments and results, to a CSV file, enhancing tracking and debugging capabilities.
 - **Clean-up**: When an existing sequence directory is given, the `clients` module and `sequence.py` file will be cleaned up and it starts generating newly.
 
-## Disadvantages
+## Limitations
 
 - **Incomplete Dependency Management**: Full dependency management for the sequence directory is not yet implemented.
   - No `pyproject.toml` file has been provided with the start-up code, instead the user need to install the wheel packages *[(logger and measurement-service)](#dependencies)* manually(`pip install "path/to/wheel/package"`) in their sequence directory.
-
-## Client Integration
-
-- Install the client generator package in the cwd using `pip install ni-measurement-plugin-sdk-generator`.
-- Import the module in the required file, i.e., `import ni_measurement_plugin_sdk_generator.client`.
-- Use methods of the client generator such as `ni_measurement_plugin_sdk_generator.client.create_client.method_to_be_called(args)`
-- Have a list  `args = ["argument1", "argument2"]` which is to be passed to the method.
-- For generating client, use
-
-    ```python
-    ni_measurement_plugin_sdk_generator.client.create_client.main(args=args)
-    ```
-
-    Here, `args` is  
-
-    ```python
-    args = [
-            f"-s{measurement.service_class}",
-            f"-o{client_module_directory}",
-            f"-c{class_name}",
-            f"-m{module_name}",
-        ]
-    ```
-
-    which `create_client` method expects.
-    Accordingly, modify your arguments with respect to the options or the parameters that the method expects.
-- Ensure that the args match with the required parameters for `create_client` method.
-- For better error handling, wrap method calls inside try-except blocks to catch and log exceptions:
-
-    ```python
-    try:
-        ni_measurement_plugin_sdk_generator.client.create_client.main(args=args)
-    except Exception as e:
-        print(f"Error occurred: {e}")
-    ```
