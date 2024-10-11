@@ -35,7 +35,7 @@ To run the `python-sequencer`, open your command line and enter:
 python-sequencer /path/to/sequence/directory
 ```
 
-- **/path/to/sequence/directory** (mandatory): The path to the directory where the generated clients and sequence files will be stored. Ensure that the directory exists and has write permissions.
+- **/path/to/sequence/directory**: The path to the directory where the generated clients and sequence files will be stored. Ensure that the directory exists and has write permissions.
 
 ### Step 3: Creating clients
 

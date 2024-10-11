@@ -1,12 +1,12 @@
-# Integrating with Custom Application - {to be changed}
+# Integrating Measurement Plug-Ins with Custom applications
 
 ## Challenges in Sequencing Measurement Plug-Ins
 
-Imagine you have a custom application or sequencer that executes measurements. If you want to sequence or run measurement plug-ins using that custom utility, how can this be achieved?
+Imagine you have a custom application or sequencer that executes measurements. If you want to sequence or run measurement plug-ins using that custom utility, How to leverage a custom application or sequencer to sequence measurement plug-ins and execute the measurements?
 
 ## The Solution: Measurement Plug-In Clients
 
-This is where the measurement plug-in clients come into the picture. It allows us to run measurements directly from a simple Python script, making it easier to invoke measurements from within a user application. This approach is highly useful for sequencing measurement plug-ins. [Know more about Measurement Plug-In Client.]({link_to_measurement_plugin_client})
+Measurement plug-in clients enable running measurements directly from a simple Python script, making it easier to invoke measurements from within any user application. This approach is highly useful for sequencing measurement plug-ins. [{Know more about Measurement Plug-In Client}.]({link_to_measurement_plugin_client})
 
 ### Sequence workflow using the Measurement Client Generator
 
@@ -41,7 +41,7 @@ The steps for integrating the measurement client generator tool with the user ap
   ni_measurement_plugin_sdk_generator.client.create_client.main(args=args)
   ```
 
-    ***[View detailed argument specifications](link_for_argument_details_in_client_generator)***
+    ***[{View detailed argument specifications}](link_for_argument_details_in_client_generator)***
 
    Modify the arguments based on the method's expected options or parameters.
 - For better error handling, wrap method calls inside try-except blocks to catch and log exceptions:
