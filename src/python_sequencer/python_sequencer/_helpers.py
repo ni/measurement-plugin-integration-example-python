@@ -303,7 +303,7 @@ def create_client(target_path: Optional[pathlib.Path] = None) -> None:
             f"-m{module_name}",
         ]
         try:
-            ni_measurement_plugin_sdk_generator.client.create_client.main(args=args)
+            ni_measurement_plugin_sdk_generator.client.create_client(args=args)
         except SystemExit as e:
             if e.code != 0:
                 continue

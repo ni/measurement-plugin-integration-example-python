@@ -2,9 +2,9 @@
 
 ## Overview
 
-This tool is a reference for integrating the measurement plug-in client generator and enabling the sequencing of measurement services using the generated clients. For generating clients for measurement plug-ins, the `ni-measurement-plugin-client-generator` is used.
+This tool serves as a reference for integrating the Measurement Plug-In Client Generator to generate measurement plug-in clients and showcase the sequencing of measurement plug-ins using the generated clients.
 
-*Note: **Please go through the [Client Integration](/ClientIntegration.md) file before reading this document.***
+***Note:** Please go through the [Client Integration](/ClientIntegration.md) file before reading this document.*
 
 ## Workflow Diagram
 
@@ -19,13 +19,17 @@ This tool is a reference for integrating the measurement plug-in client generato
   - sequence_logger-0.1.0.dev0-py3-none-any.whl
   - ni-measurement-plugin-sdk-service
 
-`sequence_logger-0.1.0.dev0-py3-none-any.whl` is available in the `root\dist` directory.
+The `sequence_logger-0.1.0.dev0-py3-none-any.whl` is available in the `root\dist` directory.
 
 ## Steps to use the Sequencer tool
 
-### Step 1: Install Poetry
+### Step 1: Install the Package
 
-Ensure Poetry is installed on your system to manage the Python environment and dependencies.
+After downloading the `python-sequencer-x.x.x-py3-none-any.whl` wheel file, install the package using the command below.
+
+```bash
+pip install /path/to/python-sequencer-x.x.x-py3-none-any.whl
+```
 
 ### Step 2: Run the Package
 
@@ -35,34 +39,34 @@ To run the `python-sequencer`, open your command line and enter:
 python-sequencer /path/to/sequence/directory
 ```
 
-- **/path/to/sequence/directory**: The path to the directory where the generated clients and sequence files will be stored. Ensure that the directory exists and has write permissions.
+- **/path/to/sequence/directory**: Specify the path to the directory where the generated clients and sequence files will be stored. Ensure that the directory exists and has write permissions.
 
 ### Step 3: Creating clients
 
 When you run the command:
 
-1. The tool will find all available measurement services.
-2. It will create a client for each service in the specified directory.
-3. Generate a `sequence.py` file, which includes a start-up sequence code for the created clients.
+1. The tool will find all the registered measurement plug-ins.
+2. It will create a client for each measurement plug-in in the specified directory.
+3. It then creates a `sequence.py` file that contains the startup sequence code for the generated clients.
 
 ### Step 4: Generated Sequence File
 
-After client creation, the tool generates a `sequence.py` file with the following:
+The generated `sequence.py` file contains the following:
 
-- `pin_map_methods`: A list of methods related to the client's pinmap.
+- `pin_map_methods`: A list of methods used to register the pin map for the measurement plug-ins, which users can update by modifying the `pin_map_path` variable.
 - A loop that registers the pinmap for each method.
-Users can modify this file to define their own sequences for the generated clients.
+
+**Note:** Users can modify this file to define their own sequences for the generated clients.
 
 ### Step 5: Logging Setup
 
-- To ensure logging functionality across all modules, a custom logging package (`sequence_logger`) has been provided as a package.
+- A custom logger (`sequence_logger`) is provided as a package to log the execution results of the sequence.
 - Make sure to install this logging package in your sequence directory by using
 
  ```bash
  pip install /path/to/sequence_logger-x.x.x-py3-none-any.whl
  ```
 
-- This enables the `sequence-logger` to be imported and utilize the logging capabilities correctly.
 - Once installed, the logging package will initialize the logging configuration for the script, helping capture logs from various operations throughout the sequence.
 
 ```text
@@ -74,8 +78,8 @@ Note: Before creating clients, the tool automatically handles directory cleanup 
 
 ### Step 6: Execute the Sequence
 
-- To execute the sequence, run the `sequence.py` file.
-- After execution, you can find the results along with the parameters in a log file which will be stored in the current working directory as a CSV file.
+- Run the `sequence.py` file to execute the sequence.
+- After execution, you can find the results along with the input configurations in the log file which will be saved in the current working directory as a CSV file.
 
 ### Example Usage
 
@@ -91,5 +95,5 @@ Note: Before creating clients, the tool automatically handles directory cleanup 
 
 ## Limitations
 
-- **Incomplete Dependency Management**: Full dependency management for the sequence directory is not yet implemented.
-  - No `pyproject.toml` file has been provided with the start-up code, instead the user need to install the wheel packages *[(logger and measurement-service)](#dependencies)* manually(`pip install "path/to/wheel/package"`) in their sequence directory.
+- **No Dependency Management**: Dependency management for the sequence directory is not yet implemented.
+  - No `pyproject.toml` file is generated with the start-up code. Instead, the user needs to install the packages *[(logger and measurement-service)](#dependencies)* manually(`pip install "path/to/wheel/package"`) to their respective sequence directory.
