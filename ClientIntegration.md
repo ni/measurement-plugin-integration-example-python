@@ -14,14 +14,14 @@ The following visual illustrates how the Measurement Plug-In Client Generator ca
 
 ![Measurement-clients-workflow](/docs/images/measurement-clients-workflow.PNG)
 
-The steps for integrating the Measurement Plug-In Client Generator with a user application are outlined in the [Measurement Plug-In Client Integration](#steps-to-integrate-the-measurement-plug-in-client) section.
+The steps for integrating the Measurement Plug-In Client Generator with a user application are outlined in the [Measurement Plug-In Client Integration](#example-code-to-integrate-the-measurement-plug-in-client-generator) section.
 
 ## Challenges Addressed by the Measurement Plug-In Client Generator
 
 - The Measurement Plug-In Client Generator integrates seamlessly with custom applications and can be tailored to meet specific requirements.
 - As the measure call is simple using measurement plug-in clients, it can be utilized to implement customizable sequence logic with user-defined inputs.
 
-## Steps to Integrate the Measurement Plug-In Client
+## Example code to Integrate the Measurement Plug-In Client Generator
 
 - Install the Measurement Plug-In Client Generator package:
 
@@ -29,23 +29,24 @@ The steps for integrating the Measurement Plug-In Client Generator with a user a
   pip install ni-measurement-plugin-sdk-generator
   ```
 
-- Import the module in your application:
+- Example usage:
 
   ```python
   import ni_measurement_plugin_sdk_generator.client
+
+  args = [
+      f"-s{measurement_service_class}",
+      f"-o{output_directory}",
+      f"-c{class_name}",
+      f"-m{module_name}",
+  ]
+  try:
+      ni_measurement_plugin_sdk_generator.client.create_client(args=args)
+  except Exception as e:
+      raise Exception("Exception thrown from client generation: ", e)
   ```
 
-- Use the following method to generate the measurement plug-in client(s):
-
-  ```python
-  ni_measurement_plugin_sdk_generator.client.create_client(args=args)
-  ```
-
-    ***[{View detailed argument specifications}](link_for_argument_details_in_client_generator)***
-
-    Modify the arguments based on the method's expected options or parameters.
-
-  **Note:** Encapsulate the call inside a `try...catch` block to handle run-time exceptions.
+  This can be executed in a loop to create clients for multiple measurement plug-ins.
 
 ## Example for Integrating the Measurement Plug-In Client Generator in a User Application
 
