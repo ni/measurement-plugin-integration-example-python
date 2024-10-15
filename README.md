@@ -41,24 +41,23 @@ python-sequencer /path/to/sequence/directory
 
 - **/path/to/sequence/directory**: Specify the path to the directory where the generated clients and sequence files will be stored. Ensure that the directory exists and has write permissions.
 
-### Step 3: Creating clients
+### Step 3: Create the client
 
 When you run the command:
 
-1. The tool will find all the registered measurement plug-ins.
-2. It will create a client for each measurement plug-in in the specified directory.
-3. It then creates a `sequence.py` file that contains the startup sequence code for the generated clients.
+1. The tool discovers all the registered measurement plug-ins.
+2. Creates clients for each measurement plug-in and a `sequence.py` file that contains the startup sequence code that uses the clients.
 
-### Step 4: Generated Sequence File
+### Step 4: Review the Generated Sequence File
 
 The generated `sequence.py` file contains the following:
 
 - `pin_map_methods`: A list of methods used to register the pin map for the measurement plug-ins, which users can update by modifying the `pin_map_path` variable.
-- A loop that registers the pinmap for each method.
+- A loop that registers the pin map for each method.
 
 **Note:** Users can modify this file to define their own sequences for the generated clients.
 
-### Step 5: Logging Setup
+### Step 5: Set Up Logging
 
 - A custom logger (`sequence_logger`) is provided as a package to log the execution results of the sequence.
 - Make sure to install this logging package in your sequence directory by using
@@ -69,31 +68,28 @@ The generated `sequence.py` file contains the following:
 
 - Once installed, the logging package will initialize the logging configuration for the script, helping capture logs from various operations throughout the sequence.
 
-```text
-Note: Before creating clients, the tool automatically handles directory cleanup by,
-    - Clearing the content of the `__init__.py` file (if it exists).
-    - Removing all generated clients.
-    - Deleting the `sequence.py` file (if present).
-```
-
 ### Step 6: Execute the Sequence
 
 - Run the `sequence.py` file to execute the sequence.
-- After execution, you can find the results along with the input configurations in the log file which will be saved in the current working directory as a CSV file.
+- The log will be saved as a CSV file in the current working directory.
+
+```text
+Note: Before creating clients, the tool automatically handles directory cleanup by,
+
+- Clearing the content of the `__init__.py` file (if it exists).
+- Removing all generated clients.
+- Deleting the `sequence.py` file (if present).
+```
 
 ### Example Usage
 
-- `python-sequencer /my/sequence/directory`
-    This command generates new clients and a sequence file in the `/my/sequence/directory` directory.
+```bash
+python-sequencer /my/sequence/directory
+```
 
-## Merits
+This command generates new clients and a sequence file in the `/my/sequence/directory` directory.
 
-- **Client Creation**: Automatically generates clients for all active measurements.
-- **Startup Code Generation**: Provides initial code in the `sequence.py` file for sequence execution, making customization easier.
-- **Logging**: Logs sequencer operations, including arguments and results, to a CSV file, enhancing tracking and debugging capabilities.
-- **Clean-up**: When an existing sequence directory is given, the `clients` module and `sequence.py` file will be cleaned up and it starts generating newly.
-
-## Limitations
+## Disclaimer
 
 - **No Dependency Management**: Dependency management for the sequence directory is not yet implemented.
-  - No `pyproject.toml` file is generated with the start-up code. Instead, the user needs to install the packages *[(logger and measurement-service)](#dependencies)* manually(`pip install "path/to/wheel/package"`) to their respective sequence directory.
+  - No `pyproject.toml` file is generated with the start-up code. Instead, the user needs to install the packages *[(logger and measurement-service)](#dependencies)* manually.

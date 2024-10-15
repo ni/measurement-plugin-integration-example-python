@@ -1,4 +1,6 @@
-# Integrating Measurement Plug-Ins with Custom applications
+# Integrating Measurement Plug-Ins with User applications
+
+You can integrate measurement plug-ins to call and execute them from user application. In this document, we will focus specifically on a **sequencer**.
 
 ## Scenario: Sequencing Measurement Plug-Ins
 
@@ -6,11 +8,9 @@ Imagine you have a custom application or sequencer designed to execute measureme
 
 ## The Solution: Measurement Plug-In Clients
 
-Measurement plug-in clients allow you to run measurements directly from a simple Python script, simplifying the process of invoking measurements from any user application. This approach is particularly useful for sequencing multiple measurement plug-ins. [{Know more about Measurement Plug-In Client}.]({link_to_measurement_plugin_client})
+Measurement plug-in clients allow you to run measurements directly from a Python script, simplifying the process of invoking measurements from user application. [{Know more about Measurement Plug-In Client}.]({link_to_measurement_plugin_client})
 
-### Sequencing workflow using the Measurement Plug-In Client Generator
-
-The following visual illustrates how the Measurement Plug-In Client Generator facilitates the sequencing of measurement plug-ins.
+The following visual illustrates how the Measurement Plug-In Client Generator can be used for calling the measurement plug-ins in user application.
 
 ![Measurement-clients-workflow](/docs/images/measurement-clients-workflow.PNG)
 
@@ -19,7 +19,7 @@ The steps for integrating the Measurement Plug-In Client Generator with a user a
 ## Challenges Addressed by the Measurement Plug-In Client Generator
 
 - The Measurement Plug-In Client Generator integrates seamlessly with custom applications and can be tailored to meet specific requirements.
-- It enables customizable sequence logic with user-defined inputs, offering flexibility in the measurement execution.
+- As the measure call is simple using measurement plug-in clients, it can be utilized to implement customizable sequence logic with user-defined inputs.
 
 ## Steps to Integrate the Measurement Plug-In Client
 
@@ -47,6 +47,6 @@ The steps for integrating the Measurement Plug-In Client Generator with a user a
 
   **Note:** Encapsulate the call inside a `try...catch` block to handle run-time exceptions.
 
-## Example for Integrating the Measurement Plug-In Client Generator in a Custom Sequencer
+## Example for Integrating the Measurement Plug-In Client Generator in a User Application
 
 For a practical implementation of this workflow, refer to our example [Sequencer tool](/README.md).
