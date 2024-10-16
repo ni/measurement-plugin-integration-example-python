@@ -1,25 +1,20 @@
 # Integrating Measurement Plug-Ins with User applications
 
-You can integrate measurement plug-ins to call and execute them from user application. In this document, we will focus specifically on a **sequencer**.
+Users can call and execute measurement plug-ins from their applications. This document focuses on a **sequencer** as the user application.
 
 ## Scenario: Sequencing Measurement Plug-Ins
 
-Imagine you have a custom application or sequencer designed to execute measurements. If you want to sequence or run measurement plug-ins using this custom application, how can you leverage it to effectively sequence and execute these measurement plug-ins?
+Consider a user application designed to sequence and execute measurements. How can support be effectively extended to Measurement Plug-ins for this user application?
 
-## The Solution: Measurement Plug-In Clients
+## Solution: Measurement Plug-In Clients
 
-Measurement plug-in clients allow you to run measurements directly from a Python script, simplifying the process of invoking measurements from user application. [{Know more about Measurement Plug-In Client}.]({link_to_measurement_plugin_client})
+Measurement plug-in clients enable users to call and run measurements from a Python script, simplifying the process to invoke measurements from the user application. [{Know more about Measurement Plug-In Client}.]({link_to_measurement_plugin_client})
 
-The following visual illustrates how the Measurement Plug-In Client Generator can be used for calling the measurement plug-ins in user application.
+The following visual illustrates how the Measurement Plug-In Client Generator can be used to generate clients to invoke measurement plug-ins in the user application.
 
 ![Measurement-clients-workflow](/docs/images/measurement-clients-workflow.PNG)
 
-The steps for integrating the Measurement Plug-In Client Generator with a user application are outlined in the [Measurement Plug-In Client Integration](#example-code-to-integrate-the-measurement-plug-in-client-generator) section.
-
-## Challenges Addressed by the Measurement Plug-In Client Generator
-
-- The Measurement Plug-In Client Generator integrates seamlessly with custom applications and can be tailored to meet specific requirements.
-- As the measure call is simple using measurement plug-in clients, it can be utilized to implement customizable sequence logic with user-defined inputs.
+An example code for integrating the Measurement Plug-In Client Generator with the user application is outlined in the [Measurement Plug-In Client Generator Integration](#example-code-to-integrate-the-measurement-plug-in-client-generator) section.
 
 ## Example code to Integrate the Measurement Plug-In Client Generator
 
@@ -34,12 +29,8 @@ The steps for integrating the Measurement Plug-In Client Generator with a user a
   ```python
   import ni_measurement_plugin_sdk_generator.client
 
-  args = [
-      f"-s{measurement_service_class}",
-      f"-o{output_directory}",
-      f"-c{class_name}",
-      f"-m{module_name}",
-  ]
+  args = [f"-s{measurement_service_class}", f"-o{output_directory}", f"-c{class_name}", f"-m{module_name}"]
+
   try:
       ni_measurement_plugin_sdk_generator.client.create_client(args=args)
   except Exception as e:

@@ -4,7 +4,7 @@
 
 This tool serves as a reference for integrating the Measurement Plug-In Client Generator to generate measurement plug-in clients and showcase the sequencing of measurement plug-ins using the generated clients.
 
-***Note:** Please go through the [Client Integration](/ClientIntegration.md) file before reading this document.*
+***Note:** Please read [Client Integration](/ClientIntegration.md) before proceeding.*
 
 ## Workflow Diagram
 
@@ -52,15 +52,17 @@ When you run the command:
 
 The generated `sequence.py` file contains the following:
 
-- `pin_map_methods`: A list of methods used to register the pin map for the measurement plug-ins, which users can update by modifying the `pin_map_path` variable.
-- A loop that registers the pin map for each method.
+If the Measurement Plug-in uses the PinMap, the PinMap must be registered before every execution.
+
+- `pin_map_methods`: A list of methods used to register the pin map for the measurement plug-ins. Update `pin_map_path` variable to the PinMap file path.
+- A loop that registers the PinMap for each Measurement Plug-in.
 
 **Note:** Users can modify this file to define their own sequences for the generated clients.
 
 ### Step 5: Set Up Logging
 
 - A custom logger (`sequence_logger`) is provided as a package to log the execution results of the sequence.
-- Make sure to install this logging package in your sequence directory by using
+- Install this logging package using the command,
 
  ```bash
  pip install /path/to/sequence_logger-x.x.x-py3-none-any.whl
@@ -91,5 +93,5 @@ This command generates new clients and a sequence file in the `/my/sequence/dire
 
 ## Disclaimer
 
-- **No Dependency Management**: Dependency management for the sequence directory is not yet implemented.
+- **No Dependency Management**: Dependency management for the sequence directory is not implemented.
   - No `pyproject.toml` file is generated with the start-up code. Instead, the user needs to install the packages *[(logger and measurement-service)](#dependencies)* manually.
