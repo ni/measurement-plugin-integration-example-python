@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "sequence-logger"
+version = "0.1.0-dev0"
+description = "A simple logger package for logging instance method calls, returns, and exceptions."
+authors = ["National Instruments"]
+license = "MIT"
+readme = "README.md"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Manufacturing",
+    "Intended Audience :: Science/Research",
+    "Operating System :: Microsoft :: Windows",
+    # Poetry automatically adds classifiers for the license and the supported Python versions.
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Topic :: Scientific/Engineering",
+    "Topic :: System :: Hardware",
+]
+
+[tool.poetry.dependencies]
+python = ">=3.8"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

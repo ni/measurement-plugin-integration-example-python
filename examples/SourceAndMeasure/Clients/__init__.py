@@ -1,0 +1,5 @@
+from clients.nidc_power_source_dc_voltage_client import NIDCPowerSourceDCVoltageClient
+from clients.ni_dmm_measurement_client import NIDmmMeasurementClient
+
+nidc_power_source_dc_voltage_client = NIDCPowerSourceDCVoltageClient()
+ni_dmm_measurement_client = NIDmmMeasurementClient()
