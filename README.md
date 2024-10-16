@@ -8,7 +8,7 @@ This tool serves as a reference for integrating the Measurement Plug-In Client G
 
 ## Workflow Diagram
 
-![sequencer-example-workflow-diagram](/docs/images/sequencer-example-workflow-diagram.PNG)
+![sequencer-example-workflow-diagram](/docs/images/sequencer-example-workflow-diagram.png)
 
 ## Dependencies
 

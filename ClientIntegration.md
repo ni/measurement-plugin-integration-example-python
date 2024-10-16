@@ -12,7 +12,7 @@ Measurement plug-in clients enable users to call and run measurements from a Pyt
 
 The following visual illustrates how the Measurement Plug-In Client Generator can be used to generate clients to invoke measurement plug-ins in the user application.
 
-![Measurement-clients-workflow](/docs/images/measurement-clients-workflow.PNG)
+![Measurement-clients-workflow](/docs/images/measurement-clients-workflow.png)
 
 An example code for integrating the Measurement Plug-In Client Generator with the user application is outlined in the [Measurement Plug-In Client Generator Integration](#example-code-to-integrate-the-measurement-plug-in-client-generator) section.
 
