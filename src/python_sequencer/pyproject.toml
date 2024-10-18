@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "python-sequencer"
-version = "0.1.0-dev0"
+version = "1.0.0-dev0"
 package-mode = true
 description = "Python sequence script generator by using Measurement Plug-In Client."
 authors = ["National Instruments"]
