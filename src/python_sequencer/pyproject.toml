@@ -4,7 +4,6 @@ version = "1.0.0-dev0"
 package-mode = true
 description = "Python sequence script generator by using Measurement Plug-In Client."
 authors = ["National Instruments"]
-readme = "README.md"
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
