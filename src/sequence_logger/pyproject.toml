@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sequence-logger"
-version = "0.1.0-dev0"
+version = "1.0.0-dev0"
 description = "A simple logger package for logging instance method calls, returns, and exceptions."
 authors = ["National Instruments"]
 license = "MIT"
