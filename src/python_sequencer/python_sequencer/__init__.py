@@ -1,3 +1,5 @@
+"""Python sequencer package for sequencing measurement plug-ins using measurement plugin clients."""
+
 import pathlib
 
 import click
@@ -11,10 +13,9 @@ from python_sequencer._helpers import create_client
     type=click.Path(exists=True, file_okay=False, dir_okay=True, writable=True, readable=True),
 )
 def run_script(directory_out: pathlib.Path) -> None:
-    """
-    The Python sequencer is a CLI tool that uses the ni-measurement-plugin-client-generator to generate clients and creates a getting-started sequence.
+    """The Python sequencer is a CLI tool that generates clients and a getting-started sequence using ni-measurement-plugin-client-generator.
 
-    The `directory_out` argument is a mandatory path to the directory where sequence files are stored.
+    The `directory_out` argument is the path to the directory where sequence files are stored.
     """
     try:
         create_client(directory_out)

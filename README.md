@@ -19,7 +19,7 @@ This tool serves as a reference for integrating the Measurement Plug-In Client G
   - sequence_logger-0.1.0.dev0-py3-none-any.whl
   - ni-measurement-plugin-sdk-service
 
-The `sequence_logger-0.1.0.dev0-py3-none-any.whl` is available in the `root\dist` directory.
+The `sequence_logger-0.1.0.dev0-py3-none-any.whl` is available in the [`releases`](https://github.com/ni/simple-sequencer-python/releases/download/v1.0.0-dev0/sequence_logger-1.0.0.dev0-py3-none-any.whl) directory.
 
 ## Steps to use the Sequencer tool
 

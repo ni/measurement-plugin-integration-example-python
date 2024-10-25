@@ -6,7 +6,7 @@ from typing import Any, Dict, List, Optional, Tuple
 import click
 import ni_measurement_plugin_sdk_generator.client
 import ni_measurement_plugin_sdk_generator.client.templates
-from mako.template import Template
+from mako.template import Template  # type: ignore
 from ni_measurement_plugin_sdk_service.discovery import DiscoveryClient
 
 _V2_MEASUREMENT_SERVICE_INTERFACE = "ni.measurementlink.measurement.v2.MeasurementService"
@@ -25,7 +25,7 @@ def _get_function_parameters(node: ast.FunctionDef) -> Dict[str, str]:
 
     # Iterate through the function's arguments, adding them to the func_params dictionary.
     for arg in node.args.args:
-        # Ignore 'self' as it is typically used for instance methods in classes and is not needed here.
+        # Ignore 'self' as it is used for instance methods in classes and is not needed here.
         if arg.arg != "self":
             func_params[arg.arg] = ""
 
@@ -121,7 +121,6 @@ def _render_template(template_name: str, **template_args: Any) -> bytes:
 
 def _create_new_sequence_file(file_path: pathlib.Path, **template_args: Any) -> None:
     """Writes a new Python file that initializes logging and registers pinmap methods."""
-
     try:
         rendered_content = _render_template("sequence.py.mako", **template_args)
     except Exception as e:
@@ -221,11 +220,11 @@ def configure_init_file(
     for module_name, class_name in zip(list_of_module_names, list_of_class_names):
         init_content.append(f"{module_name} = {class_name}()")
 
-    init_content = "\n".join(init_content)
+    init_content_str: str = "\n".join(init_content)
     init_file_path = client_module_directory / "__init__.py"
 
     with open(init_file_path, "w") as init_file:
-        init_file.write(init_content)
+        init_file.write(init_content_str)
 
     print(f"__init__.py file has been created at: {init_file_path}")
 
@@ -275,7 +274,7 @@ def create_client(target_path: Optional[pathlib.Path] = None) -> None:
         FileNotFoundError: If the target directory does not exist.
         Exception: If client generation fails for any reason.
     """
-    user_directory = pathlib.Path(target_path)
+    user_directory = pathlib.Path(target_path if target_path is not None else ".")
     client_module_directory = user_directory / "clients"
 
     if not client_module_directory.exists():
