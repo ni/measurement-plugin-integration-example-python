@@ -1,11 +1,11 @@
-# Contributing to \<reponame\> 
+# Contributing to *measurement-plugin-integration-example-python*
 
-Contributions to \<reponame\> are welcome from all!
+Contributions to *measurement-plugin-integration-example-python* are welcome from all!
 
-\<reponame\> is managed via [git](https://git-scm.com), with the canonical upstream
+*measurement-plugin-integration-example-python* is managed via [git](https://git-scm.com), with the canonical upstream
 repository hosted on [GitHub](https://github.com/ni/<reponame>/).
 
-\<reponame\> follows a pull-request model for development.  If you wish to
+*measurement-plugin-integration-example-python* follows a pull-request model for development.  If you wish to
 contribute, you will need to create a GitHub account, fork this project, push a
 branch with your changes to your project, and then submit a pull request.
 
@@ -21,11 +21,11 @@ See [GitHub's official documentation](https://help.github.com/articles/using-pul
 
 # Getting Started
 
-- TODO: include build steps here.
+To contribute to this project, it is recommended that you follow these steps:
 
-# Testing
-
-- TODO: include testing steps here.
+1. Close this repository on GitHub.
+2. Make your change.
+3. Send a GitHub Pull Request to the main repository's master branch. GitHub Pull Requests are the expected method of code collaboration on this project.
 
 # Developer Certificate of Origin (DCO)
 

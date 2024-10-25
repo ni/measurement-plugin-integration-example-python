@@ -1,5 +1,2 @@
-# Default code owner for the repository
-* @Prem-MysteryPro @jayaseelan-james
-
-# Add santhoshramaraj for documentation
-*.md @santhoshramaraj @Prem-MysteryPro @jayaseelan-james
+# Default code owners for repository
+* @santhoshramaraj @Tharun-Sundar @SowmyaRavee @jayaseelan-james
