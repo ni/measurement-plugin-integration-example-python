@@ -2,7 +2,7 @@ import pathlib
 
 import click
 
-from python_sequencer._helpers import create_client
+from ni_measurement_plugin_sequencer._helpers import create_client
 
 
 @click.command()

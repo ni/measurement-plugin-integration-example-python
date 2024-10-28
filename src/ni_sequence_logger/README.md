@@ -5,13 +5,13 @@ A Python package that logs instance method calls, parameters, and return values 
 ## Installation
 
 ```bash
-pip install /path/to/ni-sequence-logger-x.x.x-py3-none-any.whl
+pip install /path/to/ni_sequence_logger-x.x.x-py3-none-any.whl
 ```
 
 ## Usage
 
 ```python
-from sequence_logger import init_log
+from ni_sequence_logger import init_log
 
 # Initialize logging
 init_log()

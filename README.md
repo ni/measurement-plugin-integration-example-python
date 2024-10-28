@@ -1,4 +1,4 @@
-# Python Sequencer - An example sequencer
+# Python Measurement Plug-In Sequencer - An example sequencer
 
 ## Overview
 
@@ -25,18 +25,18 @@ The `ni_sequence_logger-1.0.0.dev0-py3-none-any.whl` is available in the `root\d
 
 ### Step 1: Install the Package
 
-After downloading the `python-sequencer-x.x.x-py3-none-any.whl` wheel file, install the package using the command below.
+After downloading the `ni_measurement_plugin_sequencer-x.x.x.dev0-py3-none-any.whl` wheel file, install the package using the command below.
 
 ```bash
-pip install /path/to/python-sequencer-x.x.x-py3-none-any.whl
+pip install /path/to/ni_measurement_plugin_sequencer-x.x.x.dev0-py3-none-any.whl
 ```
 
 ### Step 2: Run the Package
 
-To run the `python-sequencer`, open your command line and enter:
+To run the `ni-measurement-plugin-sequencer`, open your command line and enter:
 
 ```bash
-python-sequencer /path/to/sequence/directory
+ni-measurement-plugin-sequencer /path/to/sequence/directory
 ```
 
 - **/path/to/sequence/directory**: Specify the path to the directory where the generated clients and sequence files will be stored. Ensure that the directory exists and has write permissions.
@@ -65,7 +65,7 @@ If the Measurement Plug-in uses the PinMap, the PinMap must be registered before
 - Install this logging package using the command,
 
  ```bash
- pip install /path/to/ni_sequence_logger-x.x.x-py3-none-any.whl
+ pip install /path/to/ni_sequence_logger-x.x.x.dev0-py3-none-any.whl
  ```
 
 - Once installed, the logging package will initialize the logging configuration for the script, helping capture logs from various operations throughout the sequence.
@@ -86,7 +86,7 @@ Note: Before creating clients, the tool automatically handles directory cleanup 
 ### Example Usage
 
 ```bash
-python-sequencer /my/sequence/directory
+ni-measurement-plugin-sequencer /my/sequence/directory
 ```
 
 This command generates new clients and a sequence file in the `/my/sequence/directory` directory.
