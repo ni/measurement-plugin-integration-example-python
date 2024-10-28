@@ -1,3 +1,3 @@
-from ni_measurement_plugin_sequencer import run_script
+from ni_measurement_plugin_sequencer import create_sequence
 
-run_script()
+create_sequence()

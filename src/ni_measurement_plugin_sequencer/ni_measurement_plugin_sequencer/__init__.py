@@ -10,7 +10,7 @@ from ni_measurement_plugin_sequencer._helpers import create_client
     "directory_out",
     type=click.Path(exists=True, file_okay=False, dir_okay=True, writable=True, readable=True),
 )
-def run_script(directory_out: pathlib.Path) -> None:
+def create_sequence(directory_out: pathlib.Path) -> None:
     """
     The Python sequencer is a CLI tool that uses the ni-measurement-plugin-client-generator to generate clients and creates a getting-started sequence.
 

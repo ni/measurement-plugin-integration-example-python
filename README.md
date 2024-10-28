@@ -1,4 +1,4 @@
-# Python Measurement Plug-In Sequencer - An example sequencer
+# An Example Measurement Plug-In Sequencer in Python
 
 ## Overview
 
@@ -12,26 +12,26 @@ This tool serves as a reference for integrating the Measurement Plug-In Client G
 
 ## Dependencies
 
-- **For sequencer**
+- **The Measurement Plug-in sequencer depends on:**
   - ni-measurement-plugin-sdk-service
   - ni-measurement-plugin-sdk-generator
-- **For sequence execution**
-  - ni_sequence_logger-1.0.0.dev0-py3-none-any.whl
+- **To execute the generated sequences, these dependencies are required:**
   - ni-measurement-plugin-sdk-service
+  - ni-sequence-logger
 
-The `ni_sequence_logger-1.0.0.dev0-py3-none-any.whl` is available in the `root\dist` directory.
+Please download the `ni_sequence_logger-1.0.0-py3-none-any.whl` file from the latest release's assets.
 
 ## Steps to use the Sequencer tool
 
 ### Step 1: Install the Package
 
-After downloading the `ni_measurement_plugin_sequencer-x.x.x.dev0-py3-none-any.whl` wheel file, install the package using the command below.
+After downloading the `ni_measurement_plugin_sequencer-x.x.x-py3-none-any.whl` wheel file, install the package using the command below.
 
 ```bash
 pip install /path/to/ni_measurement_plugin_sequencer-x.x.x.dev0-py3-none-any.whl
 ```
 
-### Step 2: Run the Package
+### Step 2: Run the Sequencer tool
 
 To run the `ni-measurement-plugin-sequencer`, open your command line and enter:
 
@@ -39,7 +39,7 @@ To run the `ni-measurement-plugin-sequencer`, open your command line and enter:
 ni-measurement-plugin-sequencer /path/to/sequence/directory
 ```
 
-- **/path/to/sequence/directory**: Specify the path to the directory where the generated clients and sequence files will be stored. Ensure that the directory exists and has write permissions.
+- **/path/to/sequence/directory**: Specify the directory path where the generated clients and sequence files will be stored. Confirm that the directory exists and has the necessary write permissions.
 
 ### Step 3: Create the client
 
@@ -61,7 +61,7 @@ If the Measurement Plug-in uses the PinMap, the PinMap must be registered before
 
 ### Step 5: Set Up Logging
 
-- A custom logger (`ni-sequence-logger`) is provided as a package to log the execution results of the sequence.
+- A basic logger (`ni-sequence-logger`) is provided as a package to log the execution results of the sequence.
 - Install this logging package using the command,
 
  ```bash

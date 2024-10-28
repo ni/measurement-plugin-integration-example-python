@@ -29,7 +29,7 @@ ni-python-styleguide = "^0.4.6"
 ni-sequence-logger = {path = "../ni_sequence_logger", develop = true}  # Required only for sequence execution, not for generation.
 
 [tool.poetry.scripts]
-ni-measurement-plugin-sequencer = "ni_measurement_plugin_sequencer:run_script"
+ni-measurement-plugin-sequencer = "ni_measurement_plugin_sequencer:create_sequence"
 
 [build-system]
 requires = ["poetry-core"]
