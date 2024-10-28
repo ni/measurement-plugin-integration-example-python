@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "python-sequencer"
+name = "ni-measurement-plugin-sequencer"
 version = "1.0.0-dev0"
 package-mode = true
 description = "Python sequence script generator by using Measurement Plug-In Client."
@@ -26,10 +26,10 @@ ni-measurement-plugin-sdk-generator = {version = "^2.1.0", allow-prereleases = t
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.11.2"
 ni-python-styleguide = "^0.4.6"
-sequence_logger = {path = "../sequence_logger", develop = true}  # Required only for sequence execution, not for generation.
+ni-sequence-logger = {path = "../ni_sequence_logger", develop = true}  # Required only for sequence execution, not for generation.
 
 [tool.poetry.scripts]
-python-sequencer = "python_sequencer:run_script"
+ni-measurement-plugin-sequencer = "ni_measurement_plugin_sequencer:run_script"
 
 [build-system]
 requires = ["poetry-core"]

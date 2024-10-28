@@ -16,10 +16,10 @@ This tool serves as a reference for integrating the Measurement Plug-In Client G
   - ni-measurement-plugin-sdk-service
   - ni-measurement-plugin-sdk-generator
 - **For sequence execution**
-  - sequence_logger-0.1.0.dev0-py3-none-any.whl
+  - ni_sequence_logger-1.0.0.dev0-py3-none-any.whl
   - ni-measurement-plugin-sdk-service
 
-The `sequence_logger-0.1.0.dev0-py3-none-any.whl` is available in the `root\dist` directory.
+The `ni_sequence_logger-1.0.0.dev0-py3-none-any.whl` is available in the `root\dist` directory.
 
 ## Steps to use the Sequencer tool
 
@@ -61,11 +61,11 @@ If the Measurement Plug-in uses the PinMap, the PinMap must be registered before
 
 ### Step 5: Set Up Logging
 
-- A custom logger (`sequence_logger`) is provided as a package to log the execution results of the sequence.
+- A custom logger (`ni-sequence-logger`) is provided as a package to log the execution results of the sequence.
 - Install this logging package using the command,
 
  ```bash
- pip install /path/to/sequence_logger-x.x.x-py3-none-any.whl
+ pip install /path/to/ni_sequence_logger-x.x.x-py3-none-any.whl
  ```
 
 - Once installed, the logging package will initialize the logging configuration for the script, helping capture logs from various operations throughout the sequence.
