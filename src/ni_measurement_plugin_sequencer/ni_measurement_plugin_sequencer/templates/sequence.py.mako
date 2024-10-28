@@ -1,13 +1,13 @@
-from clients import ${', '.join(instance_names)}
+from clients import ${', '.join(instance_names) | n}
 from ni_sequence_logger import init_log
 
 init_log()
 
 pin_map_methods = [
 % for instance_name in instance_names:
-% for func in callables:
-    ${instance_name}.${func},
-% endfor
+    % for func in callables:
+    ${instance_name | n}.${func | n},
+    % endfor
 % endfor
 ]
 
