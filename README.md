@@ -15,10 +15,10 @@ This tool serves as a reference for integrating the Measurement Plug-In Client G
 - The Measurement Plug-in sequencer depends on:
   - ni-measurement-plugin-sdk-service
   - ni-measurement-plugin-sdk-generator
-- To execute the generated sequences, these dependencies are required:
+- To execute the generated sequences, the following dependency is required:
   - ni-sequence-logger
 
-Please download the `ni_sequence_logger-1.0.0-py3-none-any.whl` file from the latest release assets.
+Please download the `ni_sequence_logger-x.x.x-py3-none-any.whl` file from the latest release assets.
 
 ## Steps to use the Sequencer tool
 
