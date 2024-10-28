@@ -1,4 +1,4 @@
-# Python Sequencer - An example sequencer
+# An Example Measurement Plug-In Sequencer for Python
 
 ## Overview
 
@@ -12,34 +12,33 @@ This tool serves as a reference for integrating the Measurement Plug-In Client G
 
 ## Dependencies
 
-- **For sequencer**
+- The Measurement Plug-in sequencer depends on:
   - ni-measurement-plugin-sdk-service
   - ni-measurement-plugin-sdk-generator
-- **For sequence execution**
-  - sequence_logger-0.1.0.dev0-py3-none-any.whl
-  - ni-measurement-plugin-sdk-service
+- To execute the generated sequences, the following dependency is required:
+  - ni-sequence-logger
 
-The `sequence_logger-0.1.0.dev0-py3-none-any.whl` is available in the [`releases`](https://github.com/ni/simple-sequencer-python/releases/download/v1.0.0-dev0/sequence_logger-1.0.0.dev0-py3-none-any.whl) directory.
+Please download the `ni_sequence_logger-x.x.x-py3-none-any.whl` file from the latest release assets.
 
 ## Steps to use the Sequencer tool
 
 ### Step 1: Install the Package
 
-After downloading the `python-sequencer-x.x.x-py3-none-any.whl` wheel file, install the package using the command below.
+After downloading the `ni_measurement_plugin_sequencer-x.x.x-py3-none-any.whl` wheel file, install the package using the command below.
 
 ```bash
-pip install /path/to/python-sequencer-x.x.x-py3-none-any.whl
+pip install /path/to/ni_measurement_plugin_sequencer-x.x.x-py3-none-any.whl
 ```
 
-### Step 2: Run the Package
+### Step 2: Run the Sequencer tool
 
-To run the `python-sequencer`, open your command line and enter:
+To run the `ni-measurement-plugin-sequencer`, open your command line and enter:
 
 ```bash
-python-sequencer /path/to/sequence/directory
+ni-measurement-plugin-sequencer /path/to/sequence/directory
 ```
 
-- **/path/to/sequence/directory**: Specify the path to the directory where the generated clients and sequence files will be stored. Ensure that the directory exists and has write permissions.
+- **/path/to/sequence/directory**: Specify the directory path where the generated clients and sequence files will be stored. Confirm that the directory exists and has the necessary write permissions.
 
 ### Step 3: Create the client
 
@@ -61,11 +60,11 @@ If the Measurement Plug-in uses the PinMap, the PinMap must be registered before
 
 ### Step 5: Set Up Logging
 
-- A custom logger (`sequence_logger`) is provided as a package to log the execution results of the sequence.
+- A basic logger (`ni-sequence-logger`) is provided as a package to log the execution results of the sequence.
 - Install this logging package using the command,
 
  ```bash
- pip install /path/to/sequence_logger-x.x.x-py3-none-any.whl
+ pip install /path/to/ni_sequence_logger-x.x.x-py3-none-any.whl
  ```
 
 - Once installed, the logging package will initialize the logging configuration for the script, helping capture logs from various operations throughout the sequence.
@@ -86,7 +85,7 @@ Note: Before creating clients, the tool automatically handles directory cleanup 
 ### Example Usage
 
 ```bash
-python-sequencer /my/sequence/directory
+ni-measurement-plugin-sequencer /my/sequence/directory
 ```
 
 This command generates new clients and a sequence file in the `/my/sequence/directory` directory.
