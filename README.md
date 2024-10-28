@@ -1,4 +1,4 @@
-# An Example Measurement Plug-In Sequencer in Python
+# An Example Measurement Plug-In Sequencer for Python
 
 ## Overview
 
