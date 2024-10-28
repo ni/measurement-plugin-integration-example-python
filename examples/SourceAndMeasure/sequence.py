@@ -1,5 +1,5 @@
 from clients import nidc_power_source_dc_voltage_client, ni_dmm_measurement_client
-from sequence_logger import init_log
+from ni_sequence_logger import init_log
 
 init_log()
 
