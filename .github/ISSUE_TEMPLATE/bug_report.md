@@ -46,5 +46,5 @@ Search open/closed issues before submitting. Someone may have reported the same 
 * OS & Device: [e.g. macOS, Windows, Linux] on [Mac, PC]
 * `ni-measurement-plugin-sdk-service` version [e.g. 2.1.0]
 * `ni-measurement-plugin-sdk-generator` version [e.g. 2.1.0]
-* `ni-measurement-plugin-sequencer-example-python` version [e.g. 1.0.1]
+* `ni-measurement-plugin-sequencer` version [e.g. 1.0.1]
 * Python version [e.g. 3.9]
