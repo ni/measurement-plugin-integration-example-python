@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "source-and-measure-sequence"
+version = "1.0.0"
+package-mode = "false"
+description = "An example demonstrating the sequencing of two measurements, utilizing NI-DCPower for sourcing and NI-DMM for measurement."
+authors = ["National Instruments"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+ni-measurement-plugin-sdk-service = {version = "^2.1.0"}
+sequence_logger = {path = "../../src/sequence_logger"}
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.11.2"
+ni-python-styleguide = "^0.4.6"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
