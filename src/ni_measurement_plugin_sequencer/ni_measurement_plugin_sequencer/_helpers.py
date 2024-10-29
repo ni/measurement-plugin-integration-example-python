@@ -6,7 +6,7 @@ from typing import Any, Dict, List, Optional, Tuple
 import click
 import ni_measurement_plugin_sdk_generator.client
 import ni_measurement_plugin_sdk_generator.client.templates
-from mako.template import Template  # type: ignore
+from mako.template import Template
 from ni_measurement_plugin_sdk_service.discovery import DiscoveryClient
 
 _V2_MEASUREMENT_SERVICE_INTERFACE = "ni.measurementlink.measurement.v2.MeasurementService"
@@ -223,11 +223,11 @@ def configure_init_file(
     for module_name, class_name in zip(list_of_module_names, list_of_class_names):
         init_content.append(f"{module_name} = {class_name}()")
 
-    init_content_str: str = "\n".join(init_content)
+    init_file_text: str = "\n".join(init_content)
     init_file_path = client_module_directory / "__init__.py"
 
     with open(init_file_path, "w") as init_file:
-        init_file.write(init_content_str)
+        init_file.write(init_file_text)
 
     print(f"__init__.py file has been created at: {init_file_path}")
 
@@ -277,7 +277,7 @@ def create_client(target_path: Optional[pathlib.Path] = None) -> None:
         FileNotFoundError: If the target directory does not exist.
         Exception: If client generation fails for any reason.
     """
-    user_directory = pathlib.Path(target_path if target_path is not None else ".")
+    user_directory = pathlib.Path(target_path if target_path is not None else pathlib.Path.cwd())
     client_module_directory = user_directory / "clients"
 
     if not client_module_directory.exists():
