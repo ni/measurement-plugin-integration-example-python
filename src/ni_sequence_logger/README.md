@@ -21,7 +21,7 @@ init_log()
 
 ## Example Output
 
-```cli
+```csv
 2024-10-03 11:18:54,INFO,Method Call: NIDCPowerSourceDCVoltageClient.register_pin_map
 2024-10-03 11:18:54,INFO,Arguments: (pin_map_path='C:\\Path\\To\\PinMap.pinmap')
 2024-10-03 11:18:54,INFO,Return: None
