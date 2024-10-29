@@ -1,5 +1,5 @@
 from clients import ${', '.join(instance_names)}
-from sequence_logger import init_log
+from ni_sequence_logger import init_log
 
 init_log()
 

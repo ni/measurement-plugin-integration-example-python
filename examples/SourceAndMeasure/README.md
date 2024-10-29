@@ -14,6 +14,6 @@ This Python sequencer example sequences two measurements, where the `NI-DCPower`
 
 ## How to run the example?
 
-- Ensure that you have the `ni-measurement-plugin-sdk-service` and the custom logger package [`sequence-logger`](/dist/sequence_logger-0.1.0.dev0-py3-none-any.whl) installed in your machine or virtual environment.
+- Ensure that you have the `ni-measurement-plugin-sdk-service` and the `ni-sequence-logger`*(download from the latest release assets)* installed in your machine or virtual environment.
 - Execute the `sequence.py` file directly.
-- After execution, in the current working directory the results will be logged under the `logs\` folder.
+- After execution, the results will be logged under the `logs/` folder in the current working directory.

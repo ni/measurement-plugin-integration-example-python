@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "sequence-logger"
+name = "ni-sequence-logger"
 version = "1.0.0-dev0"
-description = "A simple logger package for logging instance method calls, returns, and exceptions."
+description = "A basic logger to log method calls, return values, and run-time errors."
 authors = ["National Instruments"]
 license = "MIT"
 readme = "README.md"
