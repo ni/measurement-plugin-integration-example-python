@@ -117,7 +117,6 @@ def _render_template(template_name: str, **template_args: Any) -> bytes:
         filename=template_file_path,
         input_encoding="utf-8",
         output_encoding="utf-8",
-        default_filters=["n"],
     )
     return template.render(**template_args)
 
