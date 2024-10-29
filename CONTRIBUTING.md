@@ -1,11 +1,11 @@
-# Contributing to *measurement-plugin-integration-example-python*
+# Contributing to Measurement Plug-In Integration - Example In Python
 
-Contributions to *measurement-plugin-integration-example-python* are welcome from all!
+Contributions to Measurement Plug-In Integration - Example In Python are welcome from all!
 
-*measurement-plugin-integration-example-python* is managed via [git](https://git-scm.com), with the canonical upstream
+Measurement Plug-In Integration - Example In Python is managed via [git](https://git-scm.com), with the canonical upstream
 repository hosted on [GitHub](https://github.com/ni/measurement-plugin-integration-example-python/).
 
-*measurement-plugin-integration-example-python* follows a pull-request model for development.  If you wish to
+Measurement Plug-In Integration - Example In Python follows a pull-request model for development.  If you wish to
 contribute, you will need to create a GitHub account, fork this project, push a
 branch with your changes to your project, and then submit a pull request.
 
@@ -58,4 +58,4 @@ To contribute to this project, it is recommended that you follow these steps:
 (taken from [developercertificate.org](https://developercertificate.org/))
 
 See [LICENSE](https://github.com/ni/measurement-plugin-integration-example-python/blob/main/LICENSE)
-for details about how Measurement Plugin Integration- Example Python is licensed.
+for details about how Measurement Plugin Integration - Example Python is licensed.
