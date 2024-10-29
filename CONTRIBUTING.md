@@ -45,9 +45,9 @@ git checkout main
 git pull
 ```
 
-## Set up Virtual Envirnoment
+## Set up Virtual Environment
 
-To setup virtual environement and install the dependencies,
+To setup virtual environment and install the dependencies,
 
 ```cmd
 poetry install
