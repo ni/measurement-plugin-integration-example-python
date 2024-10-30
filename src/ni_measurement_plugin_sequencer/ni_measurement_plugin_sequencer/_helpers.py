@@ -114,10 +114,7 @@ def _render_template(template_name: str, **template_args: Any) -> bytes:
     """Renders the Mako template and returns the output as bytes."""
     template_file_path = str(pathlib.Path(__file__).parent / "templates" / template_name)
     template = Template(
-        filename=template_file_path,
-        input_encoding="utf-8",
-        output_encoding="utf-8",
-        default_filters=["n"],
+        filename=template_file_path, input_encoding="utf-8", output_encoding="utf-8"
     )
     return template.render(**template_args)
 

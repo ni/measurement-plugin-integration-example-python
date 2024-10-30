@@ -1,3 +1,4 @@
+<%page args="instance_names, callables"/>
 from clients import ${', '.join(instance_names)}
 from ni_sequence_logger import init_log
 
