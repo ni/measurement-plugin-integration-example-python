@@ -18,7 +18,12 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.8"
+python = "^3.9"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.11.2"
+ni-python-styleguide = "^0.4.6"
+bandit = { version = "^1.7", extras = ["toml"] }
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

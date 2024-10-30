@@ -20,16 +20,27 @@ classifiers = [
 python = "^3.9"
 click = "^8.1.7"
 mako = "^1.3.5"
-ni-measurement-plugin-sdk-service = {version = "^2.1.0", allow-prereleases = true}
-ni-measurement-plugin-sdk-generator = {version = "^2.1.0", allow-prereleases = true}
+ni-measurement-plugin-sdk-service = {version = "^2.1.0"}
+ni-measurement-plugin-sdk-generator = {version = "^2.1.0"}
 
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.11.2"
 ni-python-styleguide = "^0.4.6"
-ni-sequence-logger = {path = "../ni_sequence_logger", develop = true}  # Required only for sequence execution, not for generation.
+bandit = { version = "^1.7", extras = ["toml"] }
+ni-sequence-logger = {path = "../ni_sequence_logger"}  # Required only for sequence execution, not for generation.
 
 [tool.poetry.scripts]
 ni-measurement-plugin-sequencer = "ni_measurement_plugin_sequencer:create_sequence"
+
+[tool.bandit]
+skips = [
+  "B702", # use_of_mako_templates
+]
+exclude_dirs = [".venv"]
+
+[[tool.mypy.overrides]]
+module = "mako.*"
+ignore_missing_imports = true
 
 [build-system]
 requires = ["poetry-core"]
