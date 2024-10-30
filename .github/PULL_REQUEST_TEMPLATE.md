@@ -1,5 +1,5 @@
 <!-- TODO: Mark the following with an 'x' as applicable -->
-- [ ] This contribution adheres to [CONTRIBUTING.md](https://github.com/ni/ni-spec-server-proxy/blob/main/CONTRIBUTING.md). _(Required)_
+- [ ] This contribution adheres to [CONTRIBUTING.md](https://github.com/ni/measurement-plugin-integration-example-python/blob/main/CONTRIBUTING.md). _(Required)_
 
 ### What does this Pull Request accomplish?
 

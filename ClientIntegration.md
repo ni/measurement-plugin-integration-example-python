@@ -8,7 +8,7 @@ Consider a user application designed to sequence and execute measurements. How c
 
 ## Solution: Measurement Plug-In Clients
 
-Measurement plug-in clients enable users to call and run measurements from a Python script, simplifying the process to invoke measurements from the user application. [{Know more about Measurement Plug-In Client}.]({link_to_measurement_plugin_client})
+Measurement plug-in clients enable users to call and run measurements from a Python script, simplifying the process to invoke measurements from the user application. [Know more about Measurement Plug-In Client.](https://www.ni.com/docs/en-US/bundle/measurementplugins/page/meas-plugin-client-python.html)
 
 The following visual illustrates how the Measurement Plug-In Client Generator can be used to generate clients to invoke measurement plug-ins in the user application.
 
