@@ -45,13 +45,21 @@ git checkout main
 git pull
 ```
 
-## Set up Virtual Environment
+## Install the Package and Its Dependencies
 
-To setup virtual environment and install the dependencies,
+From the package's subdirectory, run the [`poetry install`](https://python-poetry.org/docs/cli/#install)
+command. This creates an in-project virtual environment (`.venv`) and installs
+the package's dependencies and dev-dependencies, as specified in its
+`pyproject.toml` and `poetry.lock` files.
 
 ```cmd
 poetry install
 ```
+
+## Activate the Virtual Environment (If Needed)
+
+- In the command prompt: `poetry shell`
+- In VS Code ([link](https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment))
 
 ## Steps to Contribute
 
