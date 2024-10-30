@@ -5,9 +5,7 @@ init_log()
 
 pin_map_methods = [
 % for instance_name in instance_names:
-    % for func in callables:
-    ${instance_name}.${func},
-    % endfor
+    ${instance_name}.${callables[0]},
 % endfor
 ]
 

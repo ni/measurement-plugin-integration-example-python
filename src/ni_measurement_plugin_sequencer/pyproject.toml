@@ -26,6 +26,7 @@ ni-measurement-plugin-sdk-generator = {version = "^2.1.0"}
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.11.2"
 ni-python-styleguide = "^0.4.6"
+bandit = { version = "^1.7", extras = ["toml"] }
 ni-sequence-logger = {path = "../ni_sequence_logger"}  # Required only for sequence execution, not for generation.
 
 [tool.poetry.scripts]
