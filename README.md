@@ -1,75 +1,71 @@
 # An Example Measurement Plug-In Sequencer for Python
 
+- [An Example Measurement Plug-In Sequencer for Python](#an-example-measurement-plug-in-sequencer-for-python)
+  - [Overview](#overview)
+  - [Workflow Diagram](#workflow-diagram)
+  - [Dependencies](#dependencies)
+  - [Steps to use the Sequencer tool](#steps-to-use-the-sequencer-tool)
+    - [Step 1: Install the Package](#step-1-install-the-package)
+    - [Step 2: Run the Sequencer](#step-2-run-the-sequencer)
+    - [Step 3: Review the Generated Sequence File](#step-3-review-the-generated-sequence-file)
+    - [Step 4: Set Up Logging](#step-4-set-up-logging)
+    - [Step 5: Execute the Sequence](#step-5-execute-the-sequence)
+  - [Note](#note)
+
 ## Overview
 
 This tool serves as a reference for integrating the Measurement Plug-In Client Generator to generate measurement plug-in clients and showcase the sequencing of measurement plug-ins using the generated clients.
 
-***Note:** Please read [Client Integration](/ClientIntegration.md) before proceeding.*
-
 ## Workflow Diagram
 
-![sequencer-example-workflow-diagram](/docs/images/sequencer-example-workflow-diagram.png)
+![sequencer-example-workflow-diagram](./docs/images/sequencer-example-workflow-diagram.png)
 
 ## Dependencies
 
-- The Measurement Plug-in sequencer depends on:
-  - ni-measurement-plugin-sdk-service
-  - ni-measurement-plugin-sdk-generator
-- To execute the generated sequences, the following dependency is required:
-  - ni-sequence-logger
-
-Please download the `ni_sequence_logger-x.x.x-py3-none-any.whl` file from the latest release assets.
+- Python 3.9 or later
 
 ## Steps to use the Sequencer tool
 
 ### Step 1: Install the Package
 
-After downloading the `ni_measurement_plugin_sequencer-x.x.x-py3-none-any.whl` wheel file, install the package using the command below.
+After downloading the `ni_measurement_plugin_sequencer-x.x.x-py3-none-any.whl` file from the latest release assets, install the package using the command below.
 
 ```bash
-pip install /path/to/ni_measurement_plugin_sequencer-x.x.x-py3-none-any.whl
+pip install <path_to_ni_measurement_plugin_sequencer-x.x.x-py3-none-any.whl>
 ```
 
-### Step 2: Run the Sequencer tool
+### Step 2: Run the Sequencer
 
 To run the `ni-measurement-plugin-sequencer`, open your command line and enter:
 
 ```bash
-ni-measurement-plugin-sequencer /path/to/sequence/directory
+ni-measurement-plugin-sequencer <path_to_sequence_directory>
 ```
 
-- **/path/to/sequence/directory**: Specify the directory path where the generated clients and sequence files will be stored. Confirm that the directory exists and has the necessary write permissions.
+- **<path_to_sequence_directory>**: Specify the directory path where the generated clients and sequence files will be stored. Confirm that the directory exists and has the necessary write permissions.
 
-### Step 3: Create the client
+### Step 3: Review the Generated Sequence File
 
-When you run the command:
+The generated `sequence.py` file will contain the following:
 
-1. The tool discovers all the registered measurement plug-ins.
-2. Creates clients for each measurement plug-in and a `sequence.py` file that contains the startup sequence code that uses the clients.
+- `pin_map_methods`: A list of methods used to register the pin map for the measurement plug-ins. Update `pin_map_path` variable with the pin map file path.
+  - These lines of code can be removed for the non-pin-centric workflow.
+- A loop to register the pin map for each measurement plug-in.
 
-### Step 4: Review the Generated Sequence File
+**Note:** Users must update the `sequence.py` file to define their sequences using the generated measurement plug-in clients.
 
-The generated `sequence.py` file contains the following:
+### Step 4: Set Up Logging
 
-If the Measurement Plug-in uses the PinMap, the PinMap must be registered before every execution.
-
-- `pin_map_methods`: A list of methods used to register the pin map for the measurement plug-ins. Update `pin_map_path` variable to the PinMap file path.
-- A loop that registers the PinMap for each Measurement Plug-in.
-
-**Note:** Users can modify this file to define their own sequences for the generated clients.
-
-### Step 5: Set Up Logging
-
-- A basic logger (`ni-sequence-logger`) is provided as a package to log the execution results of the sequence.
-- Install this logging package using the command,
+- A basic logger package (`ni_sequence_logger`) is provided to log the execution results of the sequence.
+- Download this logging package from the latest release assets and install using the command,
 
  ```bash
- pip install /path/to/ni_sequence_logger-x.x.x-py3-none-any.whl
+ pip install <path_to_ni_sequence_logger-x.x.x-py3-none-any.whl>
  ```
 
-- Once installed, the logging package will initialize the logging configuration for the script, helping capture logs from various operations throughout the sequence.
+- Once installed, the logging package will ensure that the logging configuration is set up in the generated code, allowing the sequence file to be executed and capturing logs from various operations throughout the sequence.
 
-### Step 6: Execute the Sequence
+### Step 5: Execute the Sequence
 
 - Run the `sequence.py` file to execute the sequence.
 - The log will be saved as a CSV file in the current working directory.
@@ -82,15 +78,10 @@ Note: Before creating clients, the tool automatically handles directory cleanup 
 - Deleting the `sequence.py` file (if present).
 ```
 
-### Example Usage
+- Note:
+  - No dependency management: The user must take care of managing the dependencies for the respective sequence directory.
+    - The sequencer doesn't generate a `pyproject.toml` file. Instead, the user must ensure that the necessary dependencies are installed.
 
-```bash
-ni-measurement-plugin-sequencer /my/sequence/directory
-```
+## Note
 
-This command generates new clients and a sequence file in the `/my/sequence/directory` directory.
-
-## Disclaimer
-
-- **No Dependency Management**: Dependency management for the sequence directory is not implemented.
-  - No `pyproject.toml` file is generated with the start-up code. Instead, the user needs to install the packages *[(logger and measurement-service)](#dependencies)* manually.
+- For guidance on integrating the Measurement Plug-In Client Generator with your custom application, please refer to this [documentation](./docs/Measurement%20Plug-In%20Client%20Integration.md).

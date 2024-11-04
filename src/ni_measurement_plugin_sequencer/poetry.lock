@@ -574,7 +574,7 @@ name = "ni-sequence-logger"
 version = "1.0.0-dev0"
 description = "A basic logger to log method calls, return values, and run-time errors."
 optional = false
-python-versions = ">=3.9"
+python-versions = "^3.9"
 files = []
 develop = false
 
@@ -950,4 +950,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "a0ad7272ce5430fe394a29acb369f52456d26c593dece457650bfedb1addae1b"
+content-hash = "5597c4c371972594a29340b9c835febb68298c19e36c56743f885b6e170d3ac5"
