@@ -8,7 +8,7 @@ pin_map_methods = [
     ni_dmm_measurement_client.register_pin_map,
 ]
 
-pin_map_path = r"examples\SourceAndMeasure\PinMap.pinmap"
+pin_map_path = r"examples\source_and_measure\PinMap.pinmap"
 
 # Register the pin map with all the measurement plug-in clients
 for register_pin_map in pin_map_methods:
