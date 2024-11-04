@@ -5,7 +5,7 @@ A Python package that logs instance method calls, parameters, and return values 
 ## Installation
 
 ```bash
-pip install /path/to/ni_sequence_logger-x.x.x-py3-none-any.whl
+pip install <path_to_ni_sequence_logger-x.x.x-py3-none-any.whl>
 ```
 
 ## Usage

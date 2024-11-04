@@ -1,14 +1,14 @@
 # Integrating Measurement Plug-Ins with User applications
 
-Users can call and execute measurement plug-ins from their applications. This document focuses on a **sequencer** as the user application.
+Users can call and execute measurement plug-ins from their applications. This document considers a **sequencer** as the user application.
 
 ## Scenario: Sequencing Measurement Plug-Ins
 
-Consider a user application designed to sequence and execute measurement tasks. How can support for measurement plug-ins be effectively incorporated into this application?
+Consider a user application designed to sequence and execute measurement tasks. How can support for Measurement Plug-ins be effectively incorporated into this application?
 
 ## Solution: Measurement Plug-In Clients
 
-Measurement plug-in clients allow users to easily call and execute measurements directly from a Python script, streamlining the process of invoking measurements within the user application.
+Measurement Plug-In clients allow users to easily call and execute measurements directly from a Python script, streamlining the process of invoking measurements within the user application.
 
 Note: Refer to this [document](https://www.ni.com/docs/en-US/bundle/measurementplugins/page/meas-plugin-client-python.html) for more information on the Measurement Plug-In Client with Python.
 

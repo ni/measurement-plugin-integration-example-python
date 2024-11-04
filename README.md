@@ -28,7 +28,7 @@ Please download the `ni_sequence_logger-x.x.x-py3-none-any.whl` file from the la
 After downloading the `ni_measurement_plugin_sequencer-x.x.x-py3-none-any.whl` wheel file, install the package using the command below.
 
 ```bash
-pip install /path/to/ni_measurement_plugin_sequencer-x.x.x-py3-none-any.whl
+pip install <path_to_ni_measurement_plugin_sequencer-x.x.x-py3-none-any.whl>
 ```
 
 ### Step 2: Run the Sequencer
@@ -36,20 +36,20 @@ pip install /path/to/ni_measurement_plugin_sequencer-x.x.x-py3-none-any.whl
 To run the `ni-measurement-plugin-sequencer`, open your command line and enter:
 
 ```bash
-ni-measurement-plugin-sequencer /path/to/sequence/directory
+ni-measurement-plugin-sequencer <path_to_sequence_directory>
 ```
 
-- **/path/to/sequence/directory**: Specify the directory path where the generated clients and sequence files will be stored. Confirm that the directory exists and has the necessary write permissions.
+- **<path_to_sequence_directory>**: Specify the directory path where the generated clients and sequence files will be stored. Confirm that the directory exists and has the necessary write permissions.
 
 ### Step 3: Review the Generated Sequence File
 
 The generated `sequence.py` file will contain the following:
 
 - `pin_map_methods`: A list of methods used to register the pin map for the measurement plug-ins. Update `pin_map_path` variable with the pin map file path.
-  - This can be removed in case of non-pin centric workflow.
+  - These line(s) of code can be removed in the non-pin-centric workflow.
 - A loop that registers the PinMap for each Measurement Plug-in.
 
-**Note:** Users must update the `sequence.py` file to define their own sequences using the generated clients.
+**Note:** Users must update the `sequence.py` file to define their sequences using the generated measurement plug-in clients.
 
 ### Step 4: Set Up Logging
 
@@ -57,7 +57,7 @@ The generated `sequence.py` file will contain the following:
 - Install this logging package using the command,
 
  ```bash
- pip install /path/to/ni_sequence_logger-x.x.x-py3-none-any.whl
+ pip install <path_to_ni_sequence_logger-x.x.x-py3-none-any.whl>
  ```
 
 - Once installed, the logging package will initialize the logging configuration for the script, helping capture logs from various operations throughout the sequence.
