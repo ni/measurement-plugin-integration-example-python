@@ -1,17 +1,17 @@
 # An Example Measurement Plug-In Sequencer for Python
 
-## Table of Contents
-
-- [Overview](#overview)
-- [Workflow Diagram](#workflow-diagram)
-- [Dependencies](#dependencies)
-- [Steps to use the Sequencer tool](#steps-to-use-the-sequencer-tool)
-  - [Step 1: Install the Package](#step-1-install-the-package)
-  - [Step 2: Run the Sequencer](#step-2-run-the-sequencer)
-  - [Step 3: Review the Generated Sequence File](#step-3-review-the-generated-sequence-file)
-  - [Step 4: Set Up Logging](#step-4-set-up-logging)
-  - [Step 5: Execute the Sequence](#step-5-execute-the-sequence)
-- [Notes](#note)
+- [An Example Measurement Plug-In Sequencer for Python](#an-example-measurement-plug-in-sequencer-for-python)
+  - [Overview](#overview)
+  - [Workflow Diagram](#workflow-diagram)
+  - [Dependencies](#dependencies)
+  - [Steps to use the Sequencer tool](#steps-to-use-the-sequencer-tool)
+    - [Step 1: Install the Package](#step-1-install-the-package)
+    - [Step 2: Run the Sequencer](#step-2-run-the-sequencer)
+    - [Step 3: Review the Generated Sequence File](#step-3-review-the-generated-sequence-file)
+    - [Step 4: Set Up Logging](#step-4-set-up-logging)
+    - [Step 5: Execute the Sequence](#step-5-execute-the-sequence)
+    - [Note](#note)
+  - [Note](#note-1)
 
 ## Overview
 

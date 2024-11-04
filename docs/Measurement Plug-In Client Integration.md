@@ -1,10 +1,11 @@
-## Table of Contents
+# Measurement Plug-In Client Integration
 
-- [Integrating Measurement Plug-Ins with User Applications](#integrating-measurement-plug-ins-with-user-applications)
-- [Scenario: Sequencing Measurement Plug-Ins](#scenario-sequencing-measurement-plug-ins)
-- [Solution: Measurement Plug-In Clients](#solution-measurement-plug-in-clients)
-- [How to Integrate the Measurement Plug-In Client Generator?](#how-to-integrate-the-measurement-plug-in-client-generator)
-- [Example of Integrating the Measurement Plug-In Client Generator into a User Application](#example-of-integrating-the-measurement-plug-in-client-generator-into-a-user-application)
+- [Measurement Plug-In Client Integration](#measurement-plug-in-client-integration)
+- [Integrating Measurement Plug-Ins with User applications](#integrating-measurement-plug-ins-with-user-applications)
+  - [Scenario: Sequencing Measurement Plug-Ins](#scenario-sequencing-measurement-plug-ins)
+  - [Solution: Measurement Plug-In Clients](#solution-measurement-plug-in-clients)
+  - [How to Integrate the Measurement Plug-In Client Generator?](#how-to-integrate-the-measurement-plug-in-client-generator)
+  - [Example of Integrating the Measurement Plug-In Client Generator into a User Application](#example-of-integrating-the-measurement-plug-in-client-generator-into-a-user-application)
 
 # Integrating Measurement Plug-Ins with User applications
 
