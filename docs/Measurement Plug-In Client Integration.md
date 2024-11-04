@@ -36,25 +36,35 @@ The following visual illustrates how the Measurement Plug-In Client Generator ca
         raise Exception("Exception was thrown during client generation: ", e)
     ```
 
+    The try-except code block can be surrounded with a loop for creating clients for multiple measurement plug-ins as shown below.
+
+    ```python
+    import ni_measurement_plugin_sdk_generator.client
+
+    for measurement in available_measurement_services:
+          # You can define your own functions to structure the class name and module name and validate the arguments accordingly
+          args = [f"-s{measurement.service_class}", f"-o{client_module_directory}", f"-c{class_name}", f"-m{module_name}"]
+          try:
+              ni_measurement_plugin_sdk_generator.client.create_client(args=args)
+          except SystemExit as e:
+              if e.code != 0:
+                  continue
+          except Exception as e:
+              raise Exception("Exception thrown from client generation: ", e)    
+    ```
+
 - Usage 2:
-  - The try-except code block in Usage 1 can be surrounded with a loop for creating clients for multiple measurement plug-ins, or you can pass in multiple service classes as shown below.
+  
+  To create clients for multiple measurement plug-ins, you can provide multiple service classes as shown below.
   
   ```python
   import ni_measurement_plugin_sdk_generator.client
-
-  for measurement in available_measurement_services:
-        base_service_class = _extract_base_service_class(measurement.service_class)
-        # You can define your own functions to structure the class name and module name
-        class_name = _create_class_name(base_service_class)
-        module_name = _create_module_name(base_service_class)
-        args = [f"-s{measurement.service_class}", f"-o{client_module_directory}", f"-c{class_name}", f"-m{module_name}"]
-        try:
-            ni_measurement_plugin_sdk_generator.client.create_client(args=args)
-        except SystemExit as e:
-            if e.code != 0:
-                continue
-        except Exception as e:
-            raise Exception("Exception thrown from client generation: ", e)
+  
+  args = [f"-s{measurement_service_class_1}", f"-s{measurement_service_class_2}", f"-s{measurement_service_class_3}", f"-o{client_module_directory}"]
+  try:
+      ni_measurement_plugin_sdk_generator.client.create_client(args=args)
+  except Exception as e:
+      raise Exception("Exception thrown from client generation: ", e)
   ```
 
 ## Example of Integrating the Measurement Plug-In Client Generator into a User Application
