@@ -1,13 +1,13 @@
 # Measurement Plug-In Client Integration
 
 - [Measurement Plug-In Client Integration](#measurement-plug-in-client-integration)
-- [Integrating Measurement Plug-Ins with User applications](#integrating-measurement-plug-ins-with-user-applications)
+  - [Integrating Measurement Plug-Ins with User applications](#integrating-measurement-plug-ins-with-user-applications)
   - [Scenario: Sequencing Measurement Plug-Ins](#scenario-sequencing-measurement-plug-ins)
   - [Solution: Measurement Plug-In Clients](#solution-measurement-plug-in-clients)
   - [How to Integrate the Measurement Plug-In Client Generator?](#how-to-integrate-the-measurement-plug-in-client-generator)
   - [Example of Integrating the Measurement Plug-In Client Generator into a User Application](#example-of-integrating-the-measurement-plug-in-client-generator-into-a-user-application)
 
-# Integrating Measurement Plug-Ins with User applications
+## Integrating Measurement Plug-Ins with User applications
 
 Users can call and execute measurement plug-ins from their applications. This document considers a **sequencer** as the user application.
 
@@ -37,7 +37,8 @@ The following visual illustrates how the Measurement Plug-In Client Generator ca
 
     ```python
     import ni_measurement_plugin_sdk_generator.client
-    
+
+    # You can define your own functions to structure the class name and module name and validate the arguments accordingly
     args = [f"-s{measurement_service_class}", f"-o{output_directory}", f"-c{class_name}", f"-m{module_name}"]
     try:
         ni_measurement_plugin_sdk_generator.client.create_client(args=args)
@@ -75,6 +76,8 @@ The following visual illustrates how the Measurement Plug-In Client Generator ca
   except Exception as e:
       raise Exception("Exception thrown from client generation: ", e)
   ```
+
+  **Note:** In this approach, the class and module names will be generated automatically.
 
 ## Example of Integrating the Measurement Plug-In Client Generator into a User Application
 

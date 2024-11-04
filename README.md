@@ -10,8 +10,7 @@
     - [Step 3: Review the Generated Sequence File](#step-3-review-the-generated-sequence-file)
     - [Step 4: Set Up Logging](#step-4-set-up-logging)
     - [Step 5: Execute the Sequence](#step-5-execute-the-sequence)
-    - [Note](#note)
-  - [Note](#note-1)
+  - [Note](#note)
 
 ## Overview
 
@@ -29,7 +28,7 @@ This tool serves as a reference for integrating the Measurement Plug-In Client G
 
 ### Step 1: Install the Package
 
-After downloading the `ni_measurement_plugin_sequencer-x.x.x-py3-none-any.whl` wheel file from the latest release assets, install the package using the command below.
+After downloading the `ni_measurement_plugin_sequencer-x.x.x-py3-none-any.whl` file from the latest release assets, install the package using the command below.
 
 ```bash
 pip install <path_to_ni_measurement_plugin_sequencer-x.x.x-py3-none-any.whl>
@@ -51,7 +50,7 @@ The generated `sequence.py` file will contain the following:
 
 - `pin_map_methods`: A list of methods used to register the pin map for the measurement plug-ins. Update `pin_map_path` variable with the pin map file path.
   - These lines of code can be removed for the non-pin-centric workflow.
-- A loop that registers the pin map for each Measurement Plug-in.
+- A loop to register the pin map for each measurement plug-in.
 
 **Note:** Users must update the `sequence.py` file to define their sequences using the generated measurement plug-in clients.
 
@@ -64,7 +63,7 @@ The generated `sequence.py` file will contain the following:
  pip install <path_to_ni_sequence_logger-x.x.x-py3-none-any.whl>
  ```
 
-- Once installed, the logging package will initialize the logging configuration for the script, helping capture logs from various operations throughout the sequence.
+- Once installed, the logging package will ensure that the logging configuration is set up in the generated code, allowing the sequence file to be executed and capturing logs from various operations throughout the sequence.
 
 ### Step 5: Execute the Sequence
 
@@ -79,11 +78,10 @@ Note: Before creating clients, the tool automatically handles directory cleanup 
 - Deleting the `sequence.py` file (if present).
 ```
 
-### Note
-
-- No dependency management: The user must take care of managing the dependencies for the respective sequence directory.
-  - The sequencer doesn't generate a `pyproject.toml` file. Instead, the user must ensure that the necessary dependencies are installed.
+- Note:
+  - No dependency management: The user must take care of managing the dependencies for the respective sequence directory.
+    - The sequencer doesn't generate a `pyproject.toml` file. Instead, the user must ensure that the necessary dependencies are installed.
 
 ## Note
 
-- For additional information on implementation details or guidance on integrating the Measurement Plug-In into your custom application, please refer to the documentation here: [Measurement Plug-In Client Integration](/docs/Measurement%20Plug-In%20Client%20Integration.md)
+- For guidance on integrating the Measurement Plug-In Client Generator with your custom application, please refer to this [documentation](./docs/Measurement%20Plug-In%20Client%20Integration.md).
