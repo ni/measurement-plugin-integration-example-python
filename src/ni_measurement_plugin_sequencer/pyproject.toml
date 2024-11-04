@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ni_measurement_plugin_sequencer"
-version = "1.0.0-dev0"
+version = "1.0.0"
 description = "Python sequence script generator by using Measurement Plug-In Client."
 authors = ["NI <opensource@ni.com>"]
 classifiers = [
