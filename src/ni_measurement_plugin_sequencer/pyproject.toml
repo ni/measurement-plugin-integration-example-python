@@ -3,6 +3,9 @@ name = "ni_measurement_plugin_sequencer"
 version = "1.0.0"
 description = "Python sequence script generator by using Measurement Plug-In Client."
 authors = ["NI <opensource@ni.com>"]
+readme = "README.md"
+repository = "https://github.com/ni/measurement-plugin-integration-example-python/"
+license = "MIT"
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
@@ -31,6 +34,10 @@ ni_sequence_logger = {path = "../ni_sequence_logger"}  # Required only for seque
 [tool.poetry.scripts]
 ni-measurement-plugin-sequencer = "ni_measurement_plugin_sequencer:create_sequence"
 
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
 [tool.bandit]
 skips = [
   "B702", # use_of_mako_templates
@@ -40,7 +47,3 @@ exclude_dirs = [".venv"]
 [[tool.mypy.overrides]]
 module = "mako.*"
 ignore_missing_imports = true
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"

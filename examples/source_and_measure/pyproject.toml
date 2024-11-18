@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "source-and-measure-sequence"
+name = "source_and_measure_sequence"
 version = "1.0.0"
-package-mode = "false"
+package-mode = false
 description = "An example demonstrating the sequencing of two measurements, utilizing NI-DCPower for sourcing and NI-DMM for measurement."
 authors = ["National Instruments"]
 
